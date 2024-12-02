@@ -23,19 +23,8 @@ class Paths {
 		return getPath(null, file);
 	}
 
-	inline static public function txt(key:String)
-		return file('data/$key.txt');
-
-	inline static public function xml(key:String)
-		return file('data/$key.xml');
-
-	inline static public function json(key:String)
-		return file('data/$key.json');
-
-	#if yaml
-	inline static public function yaml(key:String)
-		return file('data/$key.yaml');
-	#end
+	inline static public function data(key:String)
+		return file('data/$key');
 
 	inline static public function video(key:String)
 		return file('videos/$key.mp4');
@@ -60,4 +49,7 @@ class Paths {
 
 	inline static public function getPackerAtlas(key:String)
 		return FlxAtlasFrames.fromSpriteSheetPacker(image(key), file('images/$key.txt'));
+	public static function returnImages() {}
+
+	public static function returnSounds() {}
 }

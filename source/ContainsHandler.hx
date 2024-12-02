@@ -29,4 +29,8 @@ class ContainsHandler
 	public function new() {
 
 	}
+
+	public static function loadMods(folder:String) {
+		
+	}
 }
