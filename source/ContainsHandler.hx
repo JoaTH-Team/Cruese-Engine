@@ -22,6 +22,10 @@ package;
  */
 class ContainsHandler
 {
+	public var title:String = "my game";
+	public var version:String = "1.0";
+	public var api_version:String = Version.API_VERSION;
+	
 	public function new() {
 
 	}
