@@ -12,7 +12,7 @@ class PolyHandler
 	public static var loadModMeta:Array<ModMetadata>;
 	static final MOD_DIR:String = 'mods';
 	static final CORE_DIR:String = 'assets';
-	static final API_VERSION:String = '1.0';
+	static final API_VERSION:String = '1.0.0';
 
 	public static var trackedMods:Array<ModMetadata> = [];
 

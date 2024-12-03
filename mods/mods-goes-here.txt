@@ -1,0 +1,16 @@
+for making a game, you must created a folder first inside this folder
+like: mods/<your folder game name>/
+
+inside your folder game name, create a file called `_polymod_meta.json` and the code will need to contains like:
+`
+{
+	"title": "Template",
+	"description": "Mod Description.",
+	"author": "You!",
+	"api_version": "1.0.0",
+	"mod_version": "1.0.0",
+	"license": "Apache 2.0"
+}
+` otherwise, the game will not found your game xd!
+
+also, for contains file, will like the `assets` folder, that is all
