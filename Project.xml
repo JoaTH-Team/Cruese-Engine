@@ -39,6 +39,7 @@
 	<haxelib name="flixel-addons" />
 	<haxelib name="flixel-ui" />
 	<haxelib name="hscript-iris" />
+	<haxelib name="polymod" />
 
 	<!-- ______________________________ Haxedefines _____________________________ -->
 

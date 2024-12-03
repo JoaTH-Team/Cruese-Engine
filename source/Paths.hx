@@ -1,15 +1,24 @@
 package;
 
+import flixel.FlxG;
+import flixel.graphics.FlxGraphic;
+import flixel.graphics.frames.FlxAtlasFrames;
+import openfl.Assets;
+import openfl.media.Sound;
 #if sys
 import sys.FileSystem;
 import sys.io.File;
 #end
-import flixel.FlxG;
-import flixel.graphics.frames.FlxAtlasFrames;
 
+@:keep
+@:access(openfl.display.BitmapData)
 class Paths {
-	inline public static final SOUND_EXT = #if !html5 "ogg" #else "mp3" #end;
+	public static final SOUND_EXT:Array<String> = ['ogg', 'wav'];
 	inline public static final DEFAULT_FOLDER:String = 'assets';
+
+	public static var currentTrackedAssets:Map<String, FlxGraphic> = [];
+	public static var currentTrackedSounds:Map<String, Sound> = [];
+	public static var localTrackedAssets:Array<String> = [];
 
 	static public function getPath(folder:Null<String>, file:String) {
 		if (folder == null)
@@ -29,17 +38,14 @@ class Paths {
 	inline static public function video(key:String)
 		return file('videos/$key.mp4');
 
-	inline static public function sound(key:String)
-		return file('sounds/$key.$SOUND_EXT');
+	static public function sound(key:String, ?cache:Bool = true):Sound
+		return returnSound('sounds/$key', cache);
 
-	inline static public function soundRandom(key:String, min:Int, max:Int)
-		return file('sounds/$key${FlxG.random.int(min, max)}.$SOUND_EXT');
+	inline static public function music(key:String, ?cache:Bool = true):Sound
+		return returnSound('music/$key', cache);
 
-	inline static public function music(key:String)
-		return file('music/$key.$SOUND_EXT');
-
-	inline static public function image(key:String)
-		return file('images/$key.png');
+	inline static public function image(key:String, ?cache:Bool = true):FlxGraphic
+		return returnGraphic('images/$key', cache);
 
 	inline static public function font(key:String)
 		return file('fonts/$key');
@@ -49,7 +55,42 @@ class Paths {
 
 	inline static public function getPackerAtlas(key:String)
 		return FlxAtlasFrames.fromSpriteSheetPacker(image(key), file('images/$key.txt'));
-	public static function returnImages() {}
+	public static function returnGraphic(key:String, ?cache:Bool = true):FlxGraphic
+	{
+		var path:String = file('$key.png');
+		if (Assets.exists(path, IMAGE))
+		{
+			if (!currentTrackedAssets.exists(path))
+			{
+				var graphic:FlxGraphic = FlxGraphic.fromBitmapData(Assets.getBitmapData(path), false, path, cache);
+				graphic.persist = true;
+				currentTrackedAssets.set(path, graphic);
+			}
 
-	public static function returnSounds() {}
+			localTrackedAssets.push(path);
+			return currentTrackedAssets.get(path);
+		}
+
+		trace('oops! $key returned null');
+		return null;
+	}
+
+	public static function returnSound(key:String, ?cache:Bool = true):Sound
+	{
+		for (i in SOUND_EXT)
+		{
+			if (Assets.exists(file('$key.$i'), SOUND))
+			{
+				var path:String = file('$key.$i');
+				if (!currentTrackedSounds.exists(path))
+					currentTrackedSounds.set(path, Assets.getSound(path, cache));
+
+				localTrackedAssets.push(path);
+				return currentTrackedSounds.get(path);
+			}
+		}
+
+		trace('oops! $key returned null');
+		return null;
+	}
 }
