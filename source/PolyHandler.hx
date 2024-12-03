@@ -4,8 +4,6 @@ import polymod.Polymod.ModMetadata;
 import polymod.Polymod;
 import polymod.backends.PolymodAssets.PolymodAssetType;
 import polymod.format.ParseRules;
-import sys.FileSystem;
-import sys.io.File;
 
 class PolyHandler
 {
@@ -36,11 +34,6 @@ class PolyHandler
 
 	public static function loadMods(folders:Array<String>)
 	{
-		if (!FileSystem.exists(MOD_DIR))
-			FileSystem.createDirectory(MOD_DIR);
-		if (!FileSystem.exists(MOD_DIR + '/mods-goes-here.txt'))
-			File.saveContent(MOD_DIR + '/mods-goes-here.txt', '');
-
 		loadModMeta = Polymod.init({
 			modRoot: MOD_DIR,
 			dirs: folders,
