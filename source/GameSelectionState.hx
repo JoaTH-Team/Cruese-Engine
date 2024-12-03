@@ -7,6 +7,7 @@ import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
+import flixel.system.FlxAssets;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 
@@ -51,7 +52,7 @@ class GameSelectionState extends FlxState
 		for (i in 0...PolyHandler.trackedMods.length)
 		{
 			var text:FlxText = new FlxText(20, 60 + (i * 60), PolyHandler.trackedMods[i].title, 32);
-			text.setFormat("_sans", 60, FlxColor.WHITE, FlxTextAlign.LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			text.setFormat(FlxAssets.FONT_DEFAULT, 60, FlxColor.WHITE, FlxTextAlign.LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			text.ID = i;
 			daMods.add(text);
 		}
