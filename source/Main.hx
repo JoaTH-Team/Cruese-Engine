@@ -23,5 +23,6 @@ class Main extends Sprite
 		addChild(new FlxGame(0, 0, GameSelectionState, 60, 60, true, false));
 		fpsCounter = new FPS(1, 1, 0xffffff);
 		addChild(fpsCounter);
+		PolyHandler.reload();
 	}
 }
