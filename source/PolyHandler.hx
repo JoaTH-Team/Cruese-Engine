@@ -41,7 +41,15 @@ class PolyHandler
 			apiVersionRule: API_VERSION,
 			errorCallback: onError,
 			frameworkParams: {
-				coreAssetRedirect: CORE_DIR
+				coreAssetRedirect: CORE_DIR,
+				assetLibraryPaths: [
+					"data" => "data",
+					"images" => "images",
+					"music" => "music",
+					"sounds" => "sounds",
+					"fonts" => "fonts",
+					"videos" => "videos"
+				]
 			},
 			parseRules: getParseRules(),
 			extensionMap: extensions,

@@ -98,6 +98,7 @@ class GameSelectionState extends FlxState
 		}
 		if (keys.ENTER)
 		{
+			PlayState.trackerFolder = curSelected;
 			FlxG.switchState(new PlayState());
 		}
 	}

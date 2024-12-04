@@ -7,6 +7,7 @@ class HScript extends Iris
 {
 	public function new(file:String)
 	{
+		trace("Load File: " + file);
 		super(Assets.getText(file));
 		config.autoRun = config.autoPreset = true;
 		config.name = file;
