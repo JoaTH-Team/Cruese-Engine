@@ -8,12 +8,15 @@ using StringTools;
 
 class PlayState extends FlxState
 {
-	var scriptArray:Array<HScript> = [];
+	public var scriptArray:Array<HScript> = [];
 
 	public static var trackerFolder:Int = 0;
+	public static var instance:PlayState = null;
 
 	override public function create()
 	{
+		instance = this;
+		
 		loadScript();
 		callOnScripts("onCreate", []);
 		super.create();
@@ -49,5 +52,11 @@ class PlayState extends FlxState
 		callOnScripts("onUpdate", [elapsed]);
 		super.update(elapsed);
 		callOnScripts("onUpdatePost", [elapsed]);
+	}
+
+	override public function destroy() {
+		callOnScripts("destroy", []);
+		super.destroy();
+		scriptArray = [];
 	}
 }

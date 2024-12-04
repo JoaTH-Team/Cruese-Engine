@@ -26,10 +26,10 @@ class GameSelectionState extends FlxState
 	override function create()
 	{
 		super.create();
-		PolyHandler.reload();
 
 		camFollow = new FlxObject(80, 0, 0, 0);
 		camFollow.screenCenter(X);
+		add(camFollow);
 
 		gridLines = new FlxTypedGroup<FlxSprite>();
 		for (i in 0...20)
@@ -70,7 +70,7 @@ class GameSelectionState extends FlxState
 		bottomBar.cameras = [camHUD];
 		add(bottomBar);
 
-		FlxG.camera.follow(camFollow, LOCKON, 0.25);
+		FlxG.camera.follow(camFollow, null, 0.15);
 	}
 
 	override function update(elapsed:Float)
@@ -109,7 +109,7 @@ class GameSelectionState extends FlxState
 
 		daMods.forEach(function(txt:FlxText)
 		{
-			txt.alpha = (!FlxG.save.data.disabledMods.contains(PolyHandler.trackedMods[txt.ID].id)) ? 1 : 0.6;
+			txt.alpha = (curSelected == txt.ID) ? 1 : 0.6;
 			if (txt.ID == curSelected)
 				camFollow.y = txt.y;
 		});

@@ -81,10 +81,17 @@
 	<!-- pretty (haxeflixel default), indent, classic (haxe compiler default) -->
 	<haxedef name="message.reporting" value="pretty" />
 
+	<!-- For script logging -->
+	<haxedef name="hscriptPos" />
+
+	<!-- Funny hscript power -->
+	<haxeflag name="--macro" value="include('flixel', true, ['flixel.addons.editors.spine.*', 'flixel.addons.nape.*', 'flixel.system.macros.*'])" />
+
 	<!-- _________________________________ Custom _______________________________ -->
 
 	<!--Place custom nodes like icons here-->
 	<haxedef name="POLYMOD_SCRIPT_EXT" value=".hxs"/>
 	<haxedef name="POLYMOD_MOD_METADATA_FILE" value="meta.json" />
 	<haxedef name="POLYMOD_MOD_ICON_FILE" value="icon.png" />
+	<haxedef name="POLYMOD_DEBUG" value="true" if="debug" />
 </project>
