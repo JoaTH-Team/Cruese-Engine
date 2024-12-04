@@ -84,4 +84,7 @@
 	<!-- _________________________________ Custom _______________________________ -->
 
 	<!--Place custom nodes like icons here-->
+	<haxedef name="POLYMOD_SCRIPT_EXT" value=".hxs"/>
+	<haxedef name="POLYMOD_MOD_METADATA_FILE" value="meta.json" />
+	<haxedef name="POLYMOD_MOD_ICON_FILE" value="icon.png" />
 </project>

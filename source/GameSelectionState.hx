@@ -82,9 +82,24 @@ class GameSelectionState extends FlxState
 			PolyHandler.reload();
 			FlxG.resetState();
 		}
+		handleKey();
+	}
 
-		if (FlxG.keys.justPressed.UP || FlxG.keys.justReleased.DOWN)
-			changeSelection(FlxG.keys.justPressed.UP ? -1 : 1);
+	function handleKey()
+	{
+		var keys = FlxG.keys.justPressed;
+		if (keys.UP)
+		{
+			changeSelection(-1);
+		}
+		if (keys.DOWN)
+		{
+			changeSelection(1);
+		}
+		if (keys.ENTER)
+		{
+			FlxG.switchState(new PlayState());
+		}
 	}
 
 	function changeSelection(change:Int = 0)

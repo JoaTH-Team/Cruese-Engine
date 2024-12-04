@@ -1,7 +1,7 @@
 for making a game, you must created a folder first inside this folder
 like: mods/<your folder game name>/
 
-inside your folder game name, create a file called `_polymod_meta.json` and the code will need to contains like:
+inside your folder game name, create a file called `meta.json` and the code will need to contains like:
 `
 {
 	"title": "Template",
