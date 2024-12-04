@@ -65,8 +65,11 @@ class PolyHandler
 
 		for (i in Polymod.scan({modRoot: MOD_DIR, apiVersionRule: API_VERSION, errorCallback: onError}))
 		{
-			trackedMods.push(i);
-			daList.push(i.id);
+			if (i != null) 
+			{
+				trackedMods.push(i);
+				daList.push(i.id);
+			}
 		}
 
 		if (daList != null && daList.length > 0)
