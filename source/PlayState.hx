@@ -17,33 +17,48 @@ class PlayState extends FlxState
 	{
 		instance = this;
 		
-		loadScript();
-		callOnScripts("onCreate", []);
-		super.create();
-		callOnScripts("onCreatePost", []);
-	}
-
-	function loadScript()
-	{
 		var gameFolder:String = PolyHandler.getModIDs()[trackerFolder];
 		trace(gameFolder);
 		var folderToCorrect:String = 'mods/$gameFolder/data/';
 		var readFolder = FileSystem.readDirectory(folderToCorrect);
-		for (file in readFolder)
+		if (FileSystem.exists(readFolder) && FileSystem.isDirectory(readFolder))
 		{
-			if (file.endsWith(".hxs"))
+			for (file in readFolder)
 			{
-				var scriptPath = Path.join([folderToCorrect, file]);
-				scriptArray.push(new HScript(scriptPath));
+				if (file.endsWith(".hxs"))
+				{
+					loadScript(file);
+				}
 			}
 		}
+
+		callOnScripts("onCreate", []);
+
+		super.create();
+
+		callOnScripts("onCreatePost", []);
+	}
+
+	function loadScript(dir:String):HScript
+	{
+		var script:HScript = new HScript(dir);
+		scriptArray.push(script);
+		script.execute();
+		return script;
 	}
 
 	function callOnScripts(funcName:String, funcArgs:Array<Dynamic>)
 	{
-		for (i in scriptArray)
+		for (i in 0...scriptArray.length)
 		{
-			i.executeFunction(funcName, funcArgs);
+			final script:HScript = scriptArray[i];
+
+			if (script.disposed) {
+				if (scriptArray.exists(script)) scriptArray.remove(script);
+				continue;
+			}
+
+			script.executeFunc(funcName, funcArgs);
 		}
 	}
 
@@ -57,6 +72,6 @@ class PlayState extends FlxState
 	override public function destroy() {
 		callOnScripts("destroy", []);
 		super.destroy();
-		scriptArray = [];
+		while (scriptArray.length > 0) scriptArray.pop().destroy();
 	}
 }

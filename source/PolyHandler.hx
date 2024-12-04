@@ -1,13 +1,11 @@
 package;
 
-import polymod.Polymod.ModMetadata;
 import polymod.Polymod;
 import polymod.backends.PolymodAssets.PolymodAssetType;
 import polymod.format.ParseRules;
 
 class PolyHandler
 {
-	public static var loadModMeta:Array<ModMetadata>;
 	static final MOD_DIR:String = 'mods';
 	static final CORE_DIR:String = 'assets';
 	static final API_VERSION:String = '1.0.0';
@@ -34,14 +32,13 @@ class PolyHandler
 
 	public static function loadMods(folders:Array<String>)
 	{
-		loadModMeta = Polymod.init({
+		var loadedModlist:Array<ModMetadata> = Polymod.init({
 			modRoot: MOD_DIR,
 			dirs: folders,
 			framework: OPENFL,
 			apiVersionRule: API_VERSION,
 			errorCallback: onError,
 			frameworkParams: {
-				coreAssetRedirect: CORE_DIR,
 				assetLibraryPaths: [
 					"data" => "data",
 					"images" => "images",
@@ -49,19 +46,20 @@ class PolyHandler
 					"sounds" => "sounds",
 					"fonts" => "fonts",
 					"videos" => "videos"
-				]
+				],
+				coreAssetRedirect: CORE_DIR
 			},
 			parseRules: getParseRules(),
 			extensionMap: extensions,
 			ignoredFiles: Polymod.getDefaultIgnoreList()
 		});
 
-		if (loadModMeta == null)
+		if (loadedModlist == null)
 			return;
 
-		trace('Loading Successful, ${loadModMeta.length} / ${folders.length} new mods.');
+		trace('Loading Successful, ${loadedModlist.length} / ${folders.length} new mods.');
 
-		for (mod in loadModMeta)
+		for (mod in loadedModlist)
 			trace('Name: ${mod.title}, [${mod.id}]');
 	}
 

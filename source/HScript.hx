@@ -1,20 +1,20 @@
 package;
 
 import crowplexus.iris.Iris;
-import openfl.utils.Assets;
 import flixel.FlxG;
 
 class HScript extends Iris
 {
+	public var disposed:Bool;
+
 	public function new(file:String)
 	{
+		disposed = false;
+
 		trace("Load File: " + file);
 
 		final getText:String->String = #if sys sys.io.File.getContent #elseif openfl openfl.utils.Assets.getText #end;
-
-		super(getText(file));
-		config.autoRun = config.autoPreset = true;
-		config.name = file;
+		super(getText(file), {name: "hscript-iris", autoRun: false, autoPreset: true});
 
 		set("importClass", function(nameClass:String, paths:String = "")
 		{
@@ -24,6 +24,11 @@ class HScript extends Iris
 			set(nameClass, Type.resolveClass(str + paths));
 		});
 
+		set("stopScript", function() 
+		{
+			this.destroy();
+		});
+
 		set("game", PlayState.instance);
 		set("state", FlxG.state);
 
@@ -31,10 +36,13 @@ class HScript extends Iris
 		set("remove", FlxG.state.remove);
 	}
 
-	public function executeFunction(name:String, args:Array<Dynamic>)
+	public function executeFunc(func:String, ?args:Array<Dynamic>):IrisCall
 	{
-		if (name == null || !exists(name))
-			return null;
-		return call(name, args);
+		return call(func, args ?? []);
+	}
+
+	override function destroy():Void {
+		super.destroy();
+		disposed = true;
 	}
 }

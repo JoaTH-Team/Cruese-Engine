@@ -30,9 +30,37 @@
 	<!-- _____________________________ Path Settings ____________________________ -->
 
 	<set name="BUILD_DIR" value="export" />
+
 	<source path="source" />
-	<assets path="assets" />
+
+	<assets path="assets/images" />
+	<assets path="assets/data" />
+	<assets path="assets/videos" />
+	<assets path="assets/music" />
+	<assets path="assets/sounds" />
+
+	<assets path="assets/fonts" embed='true' />
+
 	<assets path="mods" embed="false" />
+
+	<define name="PRELOAD_ALL" unless="web" />
+	<define name="NO_PRELOAD_ALL" unless="PRELOAD_ALL" />
+
+	<section if="PRELOAD_ALL">
+		<library name="data" preload="true" />
+		<library name="sounds" preload="true" />
+		<library name="music" preload="true" />
+		<library name="images" preload="true" />
+		<library name="videos" preload="true" />
+	</section>
+
+	<section if="NO_PRELOAD_ALL">
+		<library name="data" preload="false" />
+		<library name="sounds" preload="false" />
+		<library name="music" preload="false" />
+		<library name="images" preload="false" />
+		<library name="videos" preload="false" />
+	</section>
 
 	<!-- _______________________________ Libraries ______________________________ -->
 
