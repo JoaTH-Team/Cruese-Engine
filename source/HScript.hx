@@ -14,7 +14,7 @@ class HScript extends Iris
 		trace("Load File: " + file);
 
 		final getText:String->String = sys.io.File.getContent;
-		super(getText(Paths.data('$file.hxs')), {name: "File Path: " + file, autoRun: false, autoPreset: true});
+		super(getText(Paths.data(file)), {name: "File Path: " + file, autoRun: false, autoPreset: true});
 
 		set("importClass", function(nameClass:String, paths:String = "")
 		{
