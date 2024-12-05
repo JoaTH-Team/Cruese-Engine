@@ -20,8 +20,8 @@ class PlayState extends FlxState
 		var gameFolder:String = PolyHandler.getModIDs()[trackerFolder];
 		trace(gameFolder);
 		var folderToCorrect:String = 'mods/$gameFolder/data/';
-		var readFolder = FileSystem.readDirectory(folderToCorrect);
-		if (FileSystem.exists(readFolder) && FileSystem.isDirectory(readFolder))
+		var readFolder:Array<String> = FileSystem.readDirectory(folderToCorrect);
+		if (FileSystem.exists(readFolder[0]) && FileSystem.isDirectory(readFolder[0]))
 		{
 			for (file in readFolder)
 			{
@@ -53,10 +53,10 @@ class PlayState extends FlxState
 		{
 			final script:HScript = scriptArray[i];
 
-			if (script.disposed) {
+			/* if (script.disposed) {
 				if (scriptArray.exists(script)) scriptArray.remove(script);
 				continue;
-			}
+			}*/
 
 			script.executeFunc(funcName, funcArgs);
 		}

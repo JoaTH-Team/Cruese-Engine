@@ -13,8 +13,8 @@ class HScript extends Iris
 
 		trace("Load File: " + file);
 
-		final getText:String->String = #if sys sys.io.File.getContent #elseif openfl openfl.utils.Assets.getText #end;
-		super(getText(file), {name: "hscript-iris", autoRun: false, autoPreset: true});
+		final getText:String->String = sys.io.File.getContent;
+		super(getText(Paths.data('$file.hxs')), {name: "File Path: " + file, autoRun: false, autoPreset: true});
 
 		set("importClass", function(nameClass:String, paths:String = "")
 		{
@@ -29,6 +29,8 @@ class HScript extends Iris
 			this.destroy();
 		});
 
+		set("Handler", GameHandler);
+
 		set("game", PlayState.instance);
 		set("state", FlxG.state);
 
@@ -38,6 +40,8 @@ class HScript extends Iris
 
 	public function executeFunc(func:String, ?args:Array<Dynamic>):IrisCall
 	{
+		if (func == null || !exists(func))
+			return null;
 		return call(func, args ?? []);
 	}
 
