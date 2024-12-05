@@ -16,18 +16,20 @@ class PlayState extends FlxState
 	override public function create()
 	{
 		instance = this;
-		
-		var gameFolder:String = PolyHandler.getModIDs()[trackerFolder];
-		trace(gameFolder);
-		var folderToCorrect:String = 'mods/$gameFolder/data/';
-		var readFolder:Array<String> = FileSystem.readDirectory(folderToCorrect);
-		if (FileSystem.exists(readFolder[0]) && FileSystem.isDirectory(readFolder[0]))
+
+		var foldersToCheck:Array<String> = ['data/'];
+		for (mod in PolyHandler.getModIDs())
+			foldersToCheck.push('mods/' + mod + '/data/');
+		for (folder in foldersToCheck)
 		{
-			for (file in readFolder)
+			if (FileSystem.exists(folder) && FileSystem.isDirectory(folder))
 			{
-				if (file.endsWith(".hxs"))
+				for (file in FileSystem.readDirectory(folder))
 				{
-					loadScript(file);
+					if (file.endsWith('.hxs'))
+					{
+						scriptArray.push(new HScript(folder + file));
+					}
 				}
 			}
 		}
@@ -37,14 +39,6 @@ class PlayState extends FlxState
 		super.create();
 
 		callOnScripts("onCreatePost", []);
-	}
-
-	function loadScript(dir:String):HScript
-	{
-		var script:HScript = new HScript(dir);
-		scriptArray.push(script);
-		script.execute();
-		return script;
 	}
 
 	function callOnScripts(funcName:String, funcArgs:Array<Dynamic>)

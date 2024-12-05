@@ -14,7 +14,7 @@ class HScript extends Iris
 		trace("Load File: " + file);
 
 		final getText:String->String = sys.io.File.getContent;
-		super(getText(Paths.data(file)), {name: "File Path: " + file, autoRun: false, autoPreset: true});
+		super(getText(file), {name: "File Path: " + file, autoRun: false, autoPreset: true});
 
 		set("importClass", function(nameClass:String, paths:String = "")
 		{
@@ -36,6 +36,7 @@ class HScript extends Iris
 
 		set("add", FlxG.state.add);
 		set("remove", FlxG.state.remove);
+		execute();
 	}
 
 	public function executeFunc(func:String, ?args:Array<Dynamic>):IrisCall

@@ -6,4 +6,4 @@
 - [X] Create a simple save data (will never work this one, using `FlxG.save.data` instead man)
 - [ ] Rewrite `Project.xml` for better look
 - [X] Fix the Polymod cannot loaded the mods
-- [ ] Fix the engine cannot load any file from `data` folder for every mods
+- [X] Fix the engine cannot load any file from `data` folder for every mods
