@@ -5,6 +5,8 @@ import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.FlxState;
+import flixel.addons.display.FlxBackdrop;
+import flixel.addons.display.FlxGridOverlay;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
 import flixel.system.FlxAssets;
@@ -27,24 +29,13 @@ class GameSelectionState extends FlxState
 	{
 		super.create();
 
+		var grid:FlxBackdrop = new FlxBackdrop(FlxGridOverlay.createGrid(80, 80, 160, 160, true, 0x33FFFFFF, 0x0));
+		grid.velocity.set(40, 40);
+		add(grid);
+
 		camFollow = new FlxObject(80, 0, 0, 0);
 		camFollow.screenCenter(X);
 		add(camFollow);
-
-		gridLines = new FlxTypedGroup<FlxSprite>();
-		for (i in 0...20)
-		{
-			var hLine = new FlxSprite(0, i * 40);
-			hLine.makeGraphic(FlxG.width, 1, 0x33FFFFFF);
-			hLine.scrollFactor.set(0, 0);
-			gridLines.add(hLine);
-
-			var vLine = new FlxSprite(i * 40, 0);
-			vLine.makeGraphic(1, FlxG.height, 0x33FFFFFF);
-			vLine.scrollFactor.set(0, 0);
-			gridLines.add(vLine);
-		}
-		add(gridLines);
 
 		daMods = new FlxTypedGroup<FlxText>();
 		add(daMods);
