@@ -8,7 +8,9 @@ import hscript.*;
 import openfl.Lib;
 import sys.io.File;
 
-class HScript
+using StringTools;
+
+class HScript extends flixel.FlxBasic
 {
 	public var locals(get, set):Map<String, {r:Dynamic}>;
 
@@ -30,17 +32,53 @@ class HScript
 	public var parser:Parser = new Parser();
 	public var interp:Interp = new Interp();
 
-	public function new(file:String)
+	public function new(file:String, ?execute:Bool = true)
 	{
 		trace("Load File: " + file);
 		parser.allowJSON = parser.allowTypes = parser.allowMetadata = true;
-		set("importClass", function(name:String, ?paths:String)
-		{
-			var str:String = '';
-			if (paths.length > 0)
-				str = paths + '.';
-			set(name, Type.resolveClass(str + paths));
+
+		set('import', function(daClass:String, ?asDa:String) {
+			final splitClassName:Array<String> = [for (e in daClass.split('.')) e.trim()];
+			final className:String = splitClassName.join('.');
+			final daClass:Class<Dynamic> = Type.resolveClass(className);
+			final daEnum:Enum<Dynamic> = Type.resolveEnum(className);
+
+			if (daClass == null && daEnum == null)
+				Lib.application.window.alert('Class / Enum at $className does not exist.', 'Hscript Error!');
+			else {
+				if (daEnum != null) {
+					var daEnumField = {};
+					for (daConstructor in daEnum.getConstructors())
+						Reflect.setField(daEnumField, daConstructor, daEnum.createByName(daConstructor));
+
+					if (asDa != null && asDa != '')
+						set(asDa, daEnumField);
+					else
+						set(splitClassName[splitClassName.length - 1], daEnumField);
+				} else {
+					if (asDa != null && asDa != '')
+						set(asDa, daClass);
+					else
+						set(splitClassName[splitClassName.length - 1], daClass);
+				}
+			}
 		});
+
+		set("importScript", function(source:String) {
+			var name:String = StringTools.replace(source, '.', '/');
+			var script:HScript = new HScript('$name.hxs', false);
+			script.execute('$name.hxs', false);
+			return script.getAll();
+		});
+
+		set("stopScript", function() {
+			this.destroy();
+		});
+
+		set("trace", function(value:Dynamic) {
+			trace(value);
+		});
+
 		set("Handler", GameHandler);
 		set("Paths", Paths);
 		// Flixel
@@ -53,10 +91,12 @@ class HScript
 		set("state", FlxG.state);
 		set("add", FlxG.state.add);
 		set("remove", FlxG.state.remove);
-		execute(file);
+
+		if (execute)
+			this.execute(file);
 	}
 
-	public function execute(file:String):Void
+	public function execute(file:String, ?executeCreate:Bool = true):Void
 	{
 		try
 		{
@@ -66,16 +106,29 @@ class HScript
 			Lib.application.window.alert(Std.string(e), 'HScript Error!');
 
 		trace('Script Loaded Succesfully: $file');
+
+		if (executeCreate)
+			call('create', []);
 	}
 
-	public function set(name:String, value:Dynamic)
-		return interp.variables.set(name, value);
+	public function set(name:String, value:Dynamic):Void
+	{
+		interp?.variables.set(name, val);
+		locals.set(name, {r: val});
+	}
 
-	public function get(name:String)
-		return interp.variables.get(name);
+	public function get(name:String):Dynamic
+	{
+		if (locals.exists(name) && locals[name] != null)
+			return locals.get(name).r;
+		else if (interp.variables.exists(name))
+			return interp?.variables.get(name);
 
-	public function exists(name:String)
-		return interp.variables.exists(name);
+		return null;
+	}
+
+	public function exists(name:String):Bool
+		return interp?.variables.exists(name);
 
 	public function call(name:String, args:Array<Dynamic>)
 	{
@@ -90,5 +143,24 @@ class HScript
 		}
 
 		return null;
+	}
+
+	public function getAll():Dynamic 
+	{
+		var balls:Dynamic = {};
+
+		for (i in locals.keys())
+			Reflect.setField(balls, i, get(i));
+		for (i in interp.variables.keys())
+			Reflect.setField(balls, i, get(i));
+
+		return balls;
+	}
+
+	override function destroy() 
+	{
+		super.destroy();
+		parser = null;
+		interp = null;
 	}
 }

@@ -33,11 +33,15 @@ class PlayState extends FlxState
 			}
 		}
 
-		callOnScripts("onCreate", []);
+		for (script in scriptArray) {
+			script?.set('addScript', function(path:String) {
+				scriptArray.push(new HScript('$path.hxs'));
+			});
+		}
 
 		super.create();
 
-		callOnScripts("onCreatePost", []);
+		callOnScripts("createPost", []);
 	}
 
 	function callOnScripts(funcName:String, funcArgs:Array<Dynamic>)
@@ -51,13 +55,17 @@ class PlayState extends FlxState
 
 	override public function update(elapsed:Float)
 	{
-		callOnScripts("onUpdate", [elapsed]);
+		callOnScripts("update", [elapsed]);
 		super.update(elapsed);
-		callOnScripts("onUpdatePost", [elapsed]);
+		callOnScripts("updatePost", [elapsed]);
 	}
 
 	override public function destroy() {
-		callOnScripts("onDestroy", []);
+		callOnScripts("destroy", []);
 		super.destroy();
+
+		for (script in scriptArray)
+			script?.destroy();
+		scriptArray = [];
 	}
 }
