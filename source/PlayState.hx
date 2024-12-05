@@ -1,7 +1,6 @@
 package;
 
 import flixel.FlxState;
-import haxe.io.Path;
 import sys.FileSystem;
 
 using StringTools;
@@ -46,13 +45,7 @@ class PlayState extends FlxState
 		for (i in 0...scriptArray.length)
 		{
 			final script:HScript = scriptArray[i];
-
-			/* if (script.disposed) {
-				if (scriptArray.exists(script)) scriptArray.remove(script);
-				continue;
-			}*/
-
-			script.executeFunc(funcName, funcArgs);
+			script.call(funcName, funcArgs);
 		}
 	}
 
@@ -64,8 +57,7 @@ class PlayState extends FlxState
 	}
 
 	override public function destroy() {
-		callOnScripts("destroy", []);
+		callOnScripts("onDestroy", []);
 		super.destroy();
-		while (scriptArray.length > 0) scriptArray.pop().destroy();
 	}
 }

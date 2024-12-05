@@ -42,7 +42,7 @@ class GameSelectionState extends FlxState
 
 		for (i in 0...PolyHandler.trackedMods.length)
 		{
-			var text:FlxText = new FlxText(20, 60 + (i * 60), PolyHandler.trackedMods[i].title, 32);
+			var text:FlxText = new FlxText(20, 60 + (i * 60), PolyHandler.trackedMods[i].title, 24);
 			text.setFormat(FlxAssets.FONT_DEFAULT, 60, FlxColor.WHITE, FlxTextAlign.LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			text.ID = i;
 			daMods.add(text);
