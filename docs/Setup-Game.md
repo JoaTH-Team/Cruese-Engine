@@ -2,7 +2,7 @@
 For beginner work your game, go to the `mods` folder and do a little funni step down here:
 ### Create a folder
 - For making game, go to the `mods` folder and create your folder first!, after that, go to your folder was create and create more 1 file name `meta.json`, in there you should open your `meta.json` file and paste this code:
-```
+```json
 {
 	"title": "Template",
 	"description": "Game Description.",
