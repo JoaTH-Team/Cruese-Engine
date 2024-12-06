@@ -12,6 +12,7 @@ import flixel.math.FlxMath;
 import flixel.system.FlxAssets;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
+import openfl.display.BitmapData;
 
 // thought, i wanna make this like a game console
 class GameSelectionState extends FlxState
@@ -25,6 +26,7 @@ class GameSelectionState extends FlxState
 	private var gridLines:FlxTypedGroup<FlxSprite>;
 	var camFollow:FlxObject;
 	var desc:FlxText;
+	var logo:ModIcon;
 
 	override function create()
 	{
@@ -66,6 +68,10 @@ class GameSelectionState extends FlxState
 		desc.setFormat(FlxAssets.FONT_DEFAULT, 18, FlxColor.WHITE, FlxTextAlign.LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		desc.cameras = [camHUD];
 		add(desc);
+
+		logo = new ModIcon(PolyHandler.trackedMods[curSelected].icon);
+		logo.cameras = [camHUD];
+		add(logo);
 
 		changeSelection();
 		FlxG.camera.follow(camFollow, null, 0.15);
@@ -112,5 +118,37 @@ class GameSelectionState extends FlxState
 				camFollow.y = txt.y;
 		});
 		desc.text = PolyHandler.trackedMods[curSelected].description;
+		logo.loadGraphic(PolyHandler.trackedMods[curSelected].modPath + "icon.png");
+	}
+}
+
+class ModIcon extends FlxSprite
+{
+	public function new(bytes:haxe.io.Bytes)
+	{
+		super();
+
+		if (bytes != null && bytes.length > 0)
+		{
+			try
+			{
+				loadGraphic(BitmapData.fromBytes(bytes));
+			}
+			catch (e:Dynamic)
+			{
+				FlxG.log.warn(e);
+				loadGraphic(Paths.image('gameUI/iconMissing'));
+			}
+		}
+		else
+			loadGraphic(Paths.image('menu/iconMissing'));
+
+		scrollFactor.set();
+		updateHitbox();
+	}
+
+	override function update(elapsed:Float)
+	{
+		super.update(elapsed);
 	}
 }

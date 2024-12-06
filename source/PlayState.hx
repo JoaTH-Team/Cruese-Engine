@@ -16,9 +16,8 @@ class PlayState extends FlxState
 	{
 		instance = this;
 
-		var foldersToCheck:Array<String> = ['data/'];
-		for (mod in PolyHandler.getModIDs())
-			foldersToCheck.push('mods/' + mod + '/data/');
+		var foldersToCheck:Array<String> = [];
+		foldersToCheck.push('mods/' + PolyHandler.trackedMods[trackerFolder].id + '/data/');
 		for (folder in foldersToCheck)
 		{
 			if (FileSystem.exists(folder) && FileSystem.isDirectory(folder))

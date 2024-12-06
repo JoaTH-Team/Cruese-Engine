@@ -8,5 +8,7 @@
 - [X] Fix the Polymod cannot loaded the mods
 - [X] Fix the engine cannot load any file from `data` folder for every mods
 - [X] Fix the `HScript` not working after loading file
-- [ ] Config more thing like imported, added more function and variable on `HScript`
+- [X] Config more thing like imported, added more function and variable on `HScript`
 - [ ] Finished the menu of `GameSelectionState` with style of game console menu
+- [ ] Try to make using like `new FlxTypedGroup<Class Name>();` can be run (impossible?)
+- [ ] Fix icon cannot loaded for each selected game on `GameSelectionState`

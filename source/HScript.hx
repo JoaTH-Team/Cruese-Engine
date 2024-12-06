@@ -4,6 +4,8 @@ import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.text.FlxText;
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
 import hscript.*;
 import openfl.Lib;
 import sys.io.File;
@@ -38,7 +40,8 @@ class HScript extends flixel.FlxBasic
 		super();
 		parser.allowJSON = parser.allowTypes = parser.allowMetadata = true;
 
-		set('import', function(daClass:String, ?asDa:String) {
+		set('importClass', function(daClass:String, ?asDa:String)
+		{
 			final splitClassName:Array<String> = [for (e in daClass.split('.')) e.trim()];
 			final className:String = splitClassName.join('.');
 			final daClass:Class<Dynamic> = Type.resolveClass(className);
@@ -87,6 +90,8 @@ class HScript extends flixel.FlxBasic
 		set("FlxSprite", FlxSprite);
 		set("FlxCamera", FlxCamera);
 		set("FlxText", FlxText);
+		set("FlxTween", FlxTween);
+		set("FlxEase", FlxEase);
 
 		set("game", PlayState.instance);
 		set("state", FlxG.state);
