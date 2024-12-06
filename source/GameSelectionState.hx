@@ -23,10 +23,9 @@ class GameSelectionState extends FlxState
 	var daMods:FlxTypedGroup<FlxText>;
 	var description:FlxText;
 	var curSelected:Int = 0;
-	private var gridLines:FlxTypedGroup<FlxSprite>;
 	var camFollow:FlxObject;
 	var desc:FlxText;
-	var logo:ModIcon;
+	var logo:FlxSprite;
 
 	override function create()
 	{
@@ -69,8 +68,11 @@ class GameSelectionState extends FlxState
 		desc.cameras = [camHUD];
 		add(desc);
 
-		logo = new ModIcon(PolyHandler.trackedMods[curSelected].icon);
+		logo = new FlxSprite(700, 0).loadGraphic(Paths.image('gameUI/iconMissing'));
 		logo.cameras = [camHUD];
+		logo.scrollFactor.set();
+		logo.screenCenter(Y);
+		logo.updateHitbox();
 		add(logo);
 
 		changeSelection();
@@ -118,37 +120,10 @@ class GameSelectionState extends FlxState
 				camFollow.y = txt.y;
 		});
 		desc.text = PolyHandler.trackedMods[curSelected].description;
-		logo.loadGraphic(PolyHandler.trackedMods[curSelected].modPath + "icon.png");
-	}
-}
-
-class ModIcon extends FlxSprite
-{
-	public function new(bytes:haxe.io.Bytes)
-	{
-		super();
-
-		if (bytes != null && bytes.length > 0)
-		{
-			try
-			{
-				loadGraphic(BitmapData.fromBytes(bytes));
-			}
-			catch (e:Dynamic)
-			{
-				FlxG.log.warn(e);
-				loadGraphic(Paths.image('gameUI/iconMissing'));
-			}
+		try {
+			logo.loadGraphic(BitmapData.fromBytes(PolyHandler.trackedMods[curSelected].icon));
+		} catch (e:Dynamic) {
+			logo.loadGraphic(Paths.image('gameUI/iconMissing'));
 		}
-		else
-			loadGraphic(Paths.image('menu/iconMissing'));
-
-		scrollFactor.set();
-		updateHitbox();
-	}
-
-	override function update(elapsed:Float)
-	{
-		super.update(elapsed);
 	}
 }
