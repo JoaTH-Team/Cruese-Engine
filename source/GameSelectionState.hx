@@ -123,6 +123,7 @@ class GameSelectionState extends FlxState
 		try {
 			logo.loadGraphic(BitmapData.fromBytes(PolyHandler.trackedMods[curSelected].icon));
 		} catch (e:Dynamic) {
+			FlxG.log.warn(e);
 			logo.loadGraphic(Paths.image('gameUI/iconMissing'));
 		}
 	}
