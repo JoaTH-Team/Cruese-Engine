@@ -41,7 +41,7 @@ class PlayState extends FlxState
 
 		super.create();
 
-		callOnScripts("createPost", []);
+		callOnScripts("onCreatePost", []);
 	}
 
 	function callOnScripts(funcName:String, funcArgs:Array<Dynamic>)
@@ -55,13 +55,13 @@ class PlayState extends FlxState
 
 	override public function update(elapsed:Float)
 	{
-		callOnScripts("update", [elapsed]);
+		callOnScripts("onUpdate", [elapsed]);
 		super.update(elapsed);
-		callOnScripts("updatePost", [elapsed]);
+		callOnScripts("onUpdatePost", [elapsed]);
 	}
 
 	override public function destroy() {
-		callOnScripts("destroy", []);
+		callOnScripts("onDestroy", []);
 		super.destroy();
 
 		for (script in scriptArray)
