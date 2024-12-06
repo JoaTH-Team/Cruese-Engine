@@ -108,7 +108,7 @@ class HScript extends flixel.FlxBasic
 		trace('Script Loaded Succesfully: $file');
 
 		if (executeCreate)
-			call('create', []);
+			call('onCreate', []);
 	}
 
 	public function set(name:String, value:Dynamic):Void
