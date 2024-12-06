@@ -112,7 +112,7 @@ class HScript extends flixel.FlxBasic
 			call('onCreate', []);
 	}
 
-	public function set(name:String, value:Dynamic):Void
+	public function set(name:String, val:Dynamic):Void
 	{
 		interp?.variables.set(name, val);
 		locals.set(name, {r: val});
@@ -128,12 +128,12 @@ class HScript extends flixel.FlxBasic
 		return null;
 	}
 
-	public function exists(name:String):Bool
+	public function existsVar(name:String):Bool
 		return interp?.variables.exists(name);
 
 	public function call(name:String, args:Array<Dynamic>)
 	{
-		if (exists(name))
+		if (existsVar(name))
 		{
 			try
 			{
