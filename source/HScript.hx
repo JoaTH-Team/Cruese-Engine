@@ -35,6 +35,7 @@ class HScript extends flixel.FlxBasic
 	public function new(file:String, ?execute:Bool = true)
 	{
 		trace("Load File: " + file);
+		super();
 		parser.allowJSON = parser.allowTypes = parser.allowMetadata = true;
 
 		set('import', function(daClass:String, ?asDa:String) {

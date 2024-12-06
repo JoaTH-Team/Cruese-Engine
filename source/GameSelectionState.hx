@@ -24,6 +24,7 @@ class GameSelectionState extends FlxState
 	var curSelected:Int = 0;
 	private var gridLines:FlxTypedGroup<FlxSprite>;
 	var camFollow:FlxObject;
+	var desc:FlxText;
 
 	override function create()
 	{
@@ -42,8 +43,8 @@ class GameSelectionState extends FlxState
 
 		for (i in 0...PolyHandler.trackedMods.length)
 		{
-			var text:FlxText = new FlxText(20, 60 + (i * 60), PolyHandler.trackedMods[i].title, 24);
-			text.setFormat(FlxAssets.FONT_DEFAULT, 60, FlxColor.WHITE, FlxTextAlign.LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			var text:FlxText = new FlxText(20, 60 + (i * 60), PolyHandler.trackedMods[i].title, 20);
+			text.setFormat(FlxAssets.FONT_DEFAULT, 24, FlxColor.WHITE, FlxTextAlign.LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			text.ID = i;
 			daMods.add(text);
 		}
@@ -61,6 +62,12 @@ class GameSelectionState extends FlxState
 		bottomBar.cameras = [camHUD];
 		add(bottomBar);
 
+		desc = new FlxText(10, 429.25, 0, "", 18, false);
+		desc.setFormat(FlxAssets.FONT_DEFAULT, 18, FlxColor.WHITE, FlxTextAlign.LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		desc.cameras = [camHUD];
+		add(desc);
+
+		changeSelection();
 		FlxG.camera.follow(camFollow, null, 0.15);
 	}
 
@@ -104,5 +111,6 @@ class GameSelectionState extends FlxState
 			if (txt.ID == curSelected)
 				camFollow.y = txt.y;
 		});
+		desc.text = PolyHandler.trackedMods[curSelected].description;
 	}
 }
