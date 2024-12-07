@@ -12,6 +12,7 @@ import flixel.math.FlxMath;
 import flixel.system.FlxAssets;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
+import haxe.io.Bytes;
 import openfl.display.BitmapData;
 
 // thought, i wanna make this like a game console
@@ -25,7 +26,7 @@ class GameSelectionState extends FlxState
 	var curSelected:Int = 0;
 	var camFollow:FlxObject;
 	var desc:FlxText;
-	var logo:FlxSprite;
+	var iconGame:Array<ModIcon> = [];
 
 	override function create()
 	{
@@ -48,6 +49,10 @@ class GameSelectionState extends FlxState
 			text.setFormat(FlxAssets.FONT_DEFAULT, 24, FlxColor.WHITE, FlxTextAlign.LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			text.ID = i;
 			daMods.add(text);
+			var icon:ModIcon = new ModIcon(PolyHandler.trackedMods[i].icon);
+			icon.sprTracker = text;
+			iconGame.push(icon);
+			add(icon);
 		}
 
 		// HUD
@@ -67,13 +72,6 @@ class GameSelectionState extends FlxState
 		desc.setFormat(FlxAssets.FONT_DEFAULT, 18, FlxColor.WHITE, FlxTextAlign.LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		desc.cameras = [camHUD];
 		add(desc);
-
-		logo = new FlxSprite(700, 0).loadGraphic(Paths.image('gameUI/iconMissing'));
-		logo.cameras = [camHUD];
-		logo.scrollFactor.set();
-		logo.screenCenter(Y);
-		logo.updateHitbox();
-		add(logo);
 
 		changeSelection();
 		FlxG.camera.follow(camFollow, null, 0.15);
@@ -116,15 +114,51 @@ class GameSelectionState extends FlxState
 		daMods.forEach(function(txt:FlxText)
 		{
 			txt.alpha = (curSelected == txt.ID) ? 1 : 0.6;
+			iconGame[curSelected].alpha = (curSelected == txt.ID) ? 1 : 0.6;
 			if (txt.ID == curSelected)
 				camFollow.y = txt.y;
 		});
+
 		desc.text = PolyHandler.trackedMods[curSelected].description;
-		try {
-			logo.loadGraphic(BitmapData.fromBytes(PolyHandler.trackedMods[curSelected].icon));
-		} catch (e:Dynamic) {
-			FlxG.log.warn(e);
-			logo.loadGraphic(Paths.image('gameUI/iconMissing'));
+	}
+}
+
+class ModIcon extends FlxSprite
+{
+	public var sprTracker:FlxSprite;
+
+	public function new(bytes:Bytes)
+	{
+		super();
+
+		if (bytes != null && bytes.length > 0)
+		{
+			try
+			{
+				loadGraphic(BitmapData.fromBytes(bytes));
+			}
+			catch (e:Dynamic)
+			{
+				FlxG.log.warn(e);
+				loadGraphic(Paths.image('gameUI/iconMissing'));
+			}
+		}
+		else
+			loadGraphic(Paths.image('gameUI/iconMissing'));
+
+		setGraphicSize(75, 75);
+		scrollFactor.set();
+		updateHitbox();
+	}
+
+	override function update(elapsed:Float)
+	{
+		super.update(elapsed);
+
+		if (sprTracker != null)
+		{
+			setPosition(sprTracker.x + sprTracker.width + 5, sprTracker.y + -15);
+			scrollFactor.set(sprTracker.scrollFactor.x, sprTracker.scrollFactor.y);
 		}
 	}
 }
