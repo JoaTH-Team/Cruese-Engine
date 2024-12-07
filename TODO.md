@@ -13,9 +13,10 @@
 - [X] Fix icon cannot loaded for each selected game on `GameSelectionState`
 - [X] Fix the game cant even load (just found that can't using `version:String` directly onto `Lib` class)
 
-# v1.1 (Small Updated)
+## v1.1 (Small Updated)
 - [ ] Add a Cart display game onto `GameSelectionState`
 - [ ] Add a crash handler
+- [ ] Add a `About` class
 
 ## Would do?
 - [ ] Try to make using like `new FlxTypedGroup<Class Name>();` can be run (impossible?)
