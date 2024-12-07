@@ -8,6 +8,7 @@ import flixel.text.FlxText;
 class ActionState extends FlxState
 {
 	public static var gonnaDoWhat:String = "";
+	public static var gonnaDisplayThis:String = "";
 
 	override function create()
 	{
@@ -21,6 +22,10 @@ class ActionState extends FlxState
 				var text:FlxText = new FlxText(0, 0, 0, "Hey, you will need to add aleast 1 mods inside the `mods` folder!\nAdd one and press `F5`", 24);
 				text.screenCenter();
 				add(text);
+			case "display crash":
+				var text:FlxText = new FlxText(0, 0, 0, Std.string(gonnaDisplayThis) + "\nPress F5 to reload game", 24);
+				text.screenCenter();
+				add(text);
 		}
 	}
 
@@ -30,7 +35,7 @@ class ActionState extends FlxState
 
 		switch (gonnaDoWhat)
 		{
-			case "missing folder":
+			case "missing folder" | "display crash":
 				if (FlxG.keys.justPressed.F5)
 				{
 					FlxG.switchState(new GameSelectionState());

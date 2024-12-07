@@ -12,7 +12,6 @@
 - [X] Finished the menu of `GameSelectionState`
 - [X] Fix icon cannot loaded for each selected game on `GameSelectionState`
 - [X] Fix the game cant even load (just found that can't using `version:String` directly onto `Lib` class)
-- [ ] Fix when the game will crash when have no folder contains `meta.json` in the mods folder
 
 ## Would do?
 - [ ] Try to make using like `new FlxTypedGroup<Class Name>();` can be run (impossible?)
