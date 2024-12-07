@@ -114,10 +114,14 @@ class GameSelectionState extends FlxState
 		daMods.forEach(function(txt:FlxText)
 		{
 			txt.alpha = (curSelected == txt.ID) ? 1 : 0.6;
-			iconGame[curSelected].alpha = (curSelected == txt.ID) ? 1 : 0.6;
 			if (txt.ID == curSelected)
 				camFollow.y = txt.y;
 		});
+		for (i in 0...iconGame.length)
+		{
+			iconGame[i].alpha = 0.6;
+		}
+		iconGame[curSelected].alpha = 1;
 
 		desc.text = PolyHandler.trackedMods[curSelected].description;
 	}
