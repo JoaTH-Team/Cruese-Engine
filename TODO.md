@@ -9,7 +9,7 @@
 - [X] Fix the engine cannot load any file from `data` folder for every mods
 - [X] Fix the `HScript` not working after loading file
 - [X] Config more thing like imported, added more function and variable on `HScript`
-- [ ] Finished the menu of `GameSelectionState`
+- [X] Finished the menu of `GameSelectionState`
 - [X] Fix icon cannot loaded for each selected game on `GameSelectionState`
 - [X] Fix the game cant even load (just found that can't using `version:String` directly onto `Lib` class)
 
