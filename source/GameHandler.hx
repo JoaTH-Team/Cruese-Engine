@@ -7,6 +7,7 @@ import openfl.Lib;
 class GameHandler
 {
 	// public static var version:String = Lib.application.meta.get("version");
+	public static var versionA_M:String = "1.0.0";
 
 	public static function exitGame(?exitActually:Bool = false)
 	{

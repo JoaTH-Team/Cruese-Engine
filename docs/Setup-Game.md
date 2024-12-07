@@ -12,6 +12,15 @@ For beginner work your game, go to the `mods` folder and do a little funni step 
 	"license": "Apache 2.0"
 }
 ```
-After that, save your `meta.json` file and your game should work now!
+After that, save your `meta.json` file and your game should found your folder game now!
 
+## Put icon (optional)
+If you wanna add a icon, make one and save this image as name `icon.png` and put in your mods game like `mods/<your game>/icon.png`
+
+You should make sure that that folder also contains `meta.json` in other to make them work
+
+Also the image icon should recommended at `150x150` thought the game will auto resize them to only `75x75`
+
+## Result (TADA)
 That all you wanna make your folder work now, you should able to added stuff into game and make them run for sure!
+

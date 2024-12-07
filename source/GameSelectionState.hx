@@ -13,6 +13,7 @@ import flixel.system.FlxAssets;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import haxe.io.Bytes;
+import openfl.Lib;
 import openfl.display.BitmapData;
 
 // thought, i wanna make this like a game console
@@ -32,13 +33,13 @@ class GameSelectionState extends FlxState
 	{
 		super.create();
 
-		if (PolyHandler.trackedMods.length == 0 || PolyHandler.trackedMods.length < 1)
+		/* if (PolyHandler.trackedMods.length < 1)
 		{
 			persistentUpdate = false;
 			ActionState.gonnaDoWhat = "missing folder";
 			trace("switch state now!");
 			FlxG.switchState(new ActionState());
-		}
+		}*/
 
 		PolyHandler.reload();
 
@@ -82,6 +83,11 @@ class GameSelectionState extends FlxState
 		desc.setFormat(FlxAssets.FONT_DEFAULT, 18, FlxColor.WHITE, FlxTextAlign.LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		desc.cameras = [camHUD];
 		add(desc);
+
+		var versionDisplay:FlxText = new FlxText(1, 1, 0, 'Engine v' + Lib.application.meta.get("version") + " - Mods and API v" + GameHandler.versionA_M, 16);
+		versionDisplay.setFormat(FlxAssets.FONT_DEFAULT, 16, FlxColor.WHITE, FlxTextAlign.LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		versionDisplay.cameras = [camHUD];
+		add(versionDisplay);
 
 		changeSelection();
 		FlxG.camera.follow(camFollow, null, 0.15);
