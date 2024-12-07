@@ -32,6 +32,16 @@ class GameSelectionState extends FlxState
 	{
 		super.create();
 
+		if (PolyHandler.trackedMods.length == 0 || PolyHandler.trackedMods.length < 1)
+		{
+			persistentUpdate = false;
+			ActionState.gonnaDoWhat = "missing folder";
+			trace("switch state now!");
+			FlxG.switchState(new ActionState());
+		}
+
+		PolyHandler.reload();
+
 		var grid:FlxBackdrop = new FlxBackdrop(FlxGridOverlay.createGrid(80, 80, 160, 160, true, 0x33FFFFFF, 0x0));
 		grid.velocity.set(40, 40);
 		add(grid);

@@ -20,8 +20,6 @@ class Main extends Sprite
 		if (!FileSystem.exists('mods/mods-goes-here.txt'))
 			File.saveContent('mods/mods-goes-here.txt', '');
 
-		PolyHandler.reload();
-		
 		addChild(new FlxGame(0, 0, GameSelectionState, 60, 60, true, false));
 		fpsCounter = new FPS(1, 1, 0xffffff);
 		// addChild(fpsCounter);
