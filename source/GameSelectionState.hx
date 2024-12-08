@@ -33,16 +33,17 @@ class GameSelectionState extends FlxState
 	{
 		super.create();
 
-		/* if (PolyHandler.trackedMods.length < 1)
+		GameHandler.resizeApp(640, 480); // based
+		PolyHandler.reload();
+
+		// i think this goes after PolyHandler.reload??
+		/* if (!PolyHandler.trackedMods.length > 0)
 		{
 			persistentUpdate = false;
 			ActionState.gonnaDoWhat = "missing folder";
 			trace("switch state now!");
 			FlxG.switchState(new ActionState());
 		}*/
-
-		GameHandler.resizeApp(640, 480); // based
-		PolyHandler.reload();
 
 		var grid:FlxBackdrop = new FlxBackdrop(FlxGridOverlay.createGrid(80, 80, 160, 160, true, 0x33FFFFFF, 0x0));
 		grid.velocity.set(40, 40);
@@ -109,13 +110,9 @@ class GameSelectionState extends FlxState
 	function handleKey()
 	{
 		var keys = FlxG.keys.justPressed;
-		if (keys.UP)
+		if (keys.UP || keys.DOWN)
 		{
-			changeSelection(-1);
-		}
-		if (keys.DOWN)
-		{
-			changeSelection(1);
+			changeSelection((keys.UP) ? -1 : 1);
 		}
 		if (keys.ENTER)
 		{
@@ -144,7 +141,10 @@ class GameSelectionState extends FlxState
 		}
 		iconGame[curSelected].alpha = 1;
 
-		desc.text = PolyHandler.trackedMods[curSelected].description;
+		if (PolyHandler.trackedMods[curSelected].description != null) 
+		{
+			desc.text = PolyHandler.trackedMods[curSelected].description;
+		}
 	}
 }
 

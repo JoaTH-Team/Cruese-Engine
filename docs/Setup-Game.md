@@ -1,7 +1,8 @@
-# Setup Game (YO THIS PAGE STILL WORKING MAN!)
-For beginner work your game, go to the `mods` folder and do a little funni step down here:
-### Create a folder
-- For making game, go to the `mods` folder and create your folder first!, after that, go to your folder was create and create more 1 file name `meta.json`, in there you should open your `meta.json` file and paste this code:
+# Setup Game
+For beginner work your game, go to the `mods` folder and follow the steps down here:
+## Create a folder
+- For making game, go to the `mods` folder and create your folder first, or copy and paste the mod template! 
+- after that, go to your folder was create and create a file named `meta.json`, in there you should open your `meta.json` file and paste this code:
 ```json
 {
 	"title": "Template",
@@ -14,12 +15,12 @@ For beginner work your game, go to the `mods` folder and do a little funni step 
 ```
 After that, save your `meta.json` file and the engine should found your game for now!
 
-## Put icon (optional)
+Note that this file is required!
+
+### Put icon (optional)
 If you wanna add a icon, make one and save this image as name `icon.png` and put in your mods game like `mods/<your game>/icon.png`
 
-You should make sure that that folder also contains `meta.json` in other to make them work
-
-Also the image icon should recommended at `150x150` thought the game will auto resize them to only `75x75`
+Also the image icon should recommended at `150x150` though the game will auto resize them to only `75x75`
 
 ## Result (TADA)
 That all you wanna make your folder work now, you should able to added stuff into game and make them run for sure!

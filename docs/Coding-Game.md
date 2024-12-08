@@ -1,9 +1,9 @@
-# Coding For Game (YO THIS PAGE STILL WORKING MAN!)
+# Coding For Game
 This page will show you about coding stuff in this engine
 ## How to add thing?
 Create a `data` folder in the `mods/<your game>/data` and this is where the game could read stuff!, create a file with extension name `.hxs` and this is where you can code for now!
 
-## Example
+## Examples
 ### Create Text
 ```haxe
 function onCreate()
@@ -15,7 +15,7 @@ function onCreate()
 ```
 ### Updated Text
 ```haxe
-var text;
+var text:FlxText;
 
 function onCreate()
 {
@@ -36,7 +36,7 @@ function onUpdate(elapsed:Float)
 ```haxe
 function onCreate()
 {
-    var imgaes = new FlxSprite(0, 0, Paths.image("imagesName"));
+    var images = new FlxSprite(0, 0, Paths.image("imagesName"));
     images.screenCenter();
     add(images); 
 } 
@@ -45,3 +45,8 @@ function onCreate()
 * `onCreate` and `onCreatePost` are using for load a newly game
 * `onUpdate` and `onUpdatePost` are using for update the game every second
 * `onDestroy` are using for when destroy
+* `stopScript` destroys the current script
+* `importClass` is like `import` in normal Haxe
+* `importScript` allows access to a script's variables and functions
+* `addScript` adds a new script and runs it
+* `trace` is like `trace` in normal Haxe
