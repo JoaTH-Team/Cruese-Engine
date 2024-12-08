@@ -14,6 +14,7 @@ import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import haxe.io.Bytes;
 import openfl.Lib;
+import openfl.display.Bitmap;
 import openfl.display.BitmapData;
 
 // thought, i wanna make this like a game console
@@ -155,7 +156,12 @@ class GameSelectionState extends FlxState
 		}
 		try
 		{
-			cardGame.loadGraphic(PolyHandler.trackedMods[curSelected].modPath + "/cardGame.png");
+			var data = BitmapData.fromFile(PolyHandler.trackedMods[curSelected].modPath + "/cardGame.png");
+			// trace(data);
+			if (data == null)
+				cardGame.loadGraphic(Paths.image('gameUI/cardGameMissing'));
+			else
+				cardGame.loadGraphic(data);
 		}
 		catch (e:Dynamic)
 		{
