@@ -36,17 +36,6 @@ class GameSelectionState extends FlxState
 		super.create();
 
 		GameHandler.resizeApp(640, 480); // based
-		PolyHandler.reload();
-
-		// i think this goes after PolyHandler.reload??
-		// it should be checked mods folder, it don't have any folder that contains `meta.json` then move to ActionState with the task is `missing folder`
-		/* if (!PolyHandler.trackedMods.length > 0)
-		{
-			persistentUpdate = false;
-			ActionState.gonnaDoWhat = "missing folder";
-			trace("switch state now!");
-			FlxG.switchState(new ActionState());
-		}*/
 
 		var grid:FlxBackdrop = new FlxBackdrop(FlxGridOverlay.createGrid(80, 80, 160, 160, true, 0x33FFFFFF, 0x0));
 		grid.velocity.set(40, 40);
