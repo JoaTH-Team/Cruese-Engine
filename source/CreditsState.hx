@@ -6,8 +6,8 @@ import flixel.text.FlxText;
 
 class CreditsState extends FlxState
 {
-    var creditsList:Array<String> = [];
-    
+	var creditsList:Array<String> = [];
+
 	override function create()
 	{
 		super.create();

@@ -9,17 +9,17 @@ class InitialState extends FlxState
 {
 	override function create()
 	{
-        PolyHandler.reload();
+		PolyHandler.reload();
 
-        if (PolyHandler.trackedMods.length > 0)
-        {
-            FlxG.switchState(new GameSelectionState());
-        }
-        else
-        {
-            ActionState.gonnaDoWhat = "missing folder";
-            FlxG.switchState(new ActionState());
-        }
+		if (PolyHandler.trackedMods.length > 0)
+		{
+			FlxG.switchState(new GameSelectionState());
+		}
+		else
+		{
+			ActionState.gonnaDoWhat = "missing folder";
+			FlxG.switchState(new ActionState());
+		}
 		super.create();
 	}
 
