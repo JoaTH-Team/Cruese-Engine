@@ -19,12 +19,10 @@ class ActionState extends FlxState
 		switch (gonnaDoWhat)
 		{
 			case "missing folder":
-				var text:FlxText = new FlxText(0, 0, 0, "Hey, you will need to add aleast 1 mods inside the `mods` folder!\nAdd one and press `F5`", 24);
-				text.screenCenter();
+				var text:FlxText = new FlxText(0, 0, 0, "Hey, you will need to\nadd aleast 1 mods inside the `mods` folder!\nAdd one and press `F5`", 24);
 				add(text);
 			case "display crash":
 				var text:FlxText = new FlxText(0, 0, 0, Std.string(gonnaDisplayThis) + "\nPress F5 to reload game", 24);
-				text.screenCenter();
 				add(text);
 		}
 	}

@@ -16,4 +16,10 @@ class GameHandler
 		else
 			FlxG.switchState(new GameSelectionState());
 	}
+	// both like resizeGame and resizeWindow but this one can do both of them
+	public static function resizeApp(w:Int, h:Int)
+	{
+		FlxG.resizeGame(w, h);
+		FlxG.resizeWindow(w, h);
+	}
 }

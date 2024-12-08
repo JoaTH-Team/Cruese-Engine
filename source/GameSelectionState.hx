@@ -41,6 +41,7 @@ class GameSelectionState extends FlxState
 			FlxG.switchState(new ActionState());
 		}*/
 
+		GameHandler.resizeApp(640, 480); // based
 		PolyHandler.reload();
 
 		var grid:FlxBackdrop = new FlxBackdrop(FlxGridOverlay.createGrid(80, 80, 160, 160, true, 0x33FFFFFF, 0x0));

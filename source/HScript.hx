@@ -83,7 +83,7 @@ class HScript extends flixel.FlxBasic
 			trace(value);
 		});
 
-		set("Handler", GameHandler);
+		set("config", GameHandler);
 		set("Paths", Paths);
 		// Flixel
 		set("FlxG", FlxG);
