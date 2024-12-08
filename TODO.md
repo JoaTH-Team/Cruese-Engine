@@ -1,5 +1,10 @@
 # List TODO for Cruese Engine
-## v1.1 (Small Updated)
+## v1.2 (Another small update but affect to gameplay)
+- [ ] Make a switch state when there have no mods folder inside them (like will move to `ActionState` when have no folder contains `meta.json` in the `mods` folder)
+- [ ] Display more thing on `About` state
+- [ ] Add credits state on this engine (thought idk is should be?, but i will made mods can also add credits on them too)
+
+## v1.1 (Small Updated) - DONE
 - [X] Add a card display game onto `GameSelectionState` (it likely display cartridge)
 - [X] Add a crash handler
 - [X] Add a `About` class
