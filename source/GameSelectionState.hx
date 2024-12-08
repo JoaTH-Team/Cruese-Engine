@@ -28,6 +28,7 @@ class GameSelectionState extends FlxState
 	var camFollow:FlxObject;
 	var desc:FlxText;
 	var iconGame:Array<ModIcon> = [];
+	var cardGame:FlxSprite;
 
 	override function create()
 	{
@@ -37,6 +38,7 @@ class GameSelectionState extends FlxState
 		PolyHandler.reload();
 
 		// i think this goes after PolyHandler.reload??
+		// it should be checked mods folder, it don't have any folder that contains `meta.json` then move to ActionState with the task is `missing folder`
 		/* if (!PolyHandler.trackedMods.length > 0)
 		{
 			persistentUpdate = false;
@@ -86,7 +88,13 @@ class GameSelectionState extends FlxState
 		desc.cameras = [camHUD];
 		add(desc);
 
-		var versionDisplay:FlxText = new FlxText(1, 1, 0, "Press F1 For display some about thing", 16);
+		cardGame = new FlxSprite(0, 0, Paths.image("gameUI/cardGameMissing"));
+		cardGame.screenCenter(XY);
+		cardGame.cameras = [camHUD];
+		cardGame.x += 125;
+		add(cardGame);
+
+		var versionDisplay:FlxText = new FlxText(1, 1, 0, "Press F1 to display ABOUT", 16);
 		versionDisplay.setFormat(FlxAssets.FONT_DEFAULT, 16, FlxColor.WHITE, FlxTextAlign.LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		versionDisplay.cameras = [camHUD];
 		add(versionDisplay);
@@ -144,6 +152,15 @@ class GameSelectionState extends FlxState
 		if (PolyHandler.trackedMods[curSelected].description != null) 
 		{
 			desc.text = PolyHandler.trackedMods[curSelected].description;
+		}
+		try
+		{
+			cardGame.loadGraphic(PolyHandler.trackedMods[curSelected].modPath + "/cardGame.png");
+		}
+		catch (e:Dynamic)
+		{
+			FlxG.log.warn(e);
+			cardGame.loadGraphic(Paths.image('gameUI/cardGameMissing'));
 		}
 	}
 }

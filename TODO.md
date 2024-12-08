@@ -1,6 +1,6 @@
 # List TODO for Cruese Engine
 ## v1.1 (Small Updated)
-- [ ] Add a Cart display game onto `GameSelectionState`
+- [ ] Add a card display game onto `GameSelectionState` (it likely display cartridge)
 - [X] Add a crash handler
 - [X] Add a `About` class
 

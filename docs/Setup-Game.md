@@ -20,6 +20,9 @@ Note that this file is required!
 ### Put icon (optional)
 If you wanna add a icon, make one and save this image as name `icon.png` and put in your mods game like `mods/<your game>/icon.png`
 
+### Put card to display (optional)
+Display more thing idk how to say
+
 Also the image icon should recommended at `150x150` though the game will auto resize them to only `75x75`
 
 ## Result (TADA)
