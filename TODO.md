@@ -1,4 +1,9 @@
 # List TODO for Cruese Engine
+## v1.1 (Small Updated)
+- [ ] Add a Cart display game onto `GameSelectionState`
+- [X] Add a crash handler
+- [ ] Add a `About` class
+
 ## v1.0 (First/Inital Release) - DONE
 - [X] Create a simple hscript system
 - [X] Create and init the polymod
@@ -12,11 +17,6 @@
 - [X] Finished the menu of `GameSelectionState`
 - [X] Fix icon cannot loaded for each selected game on `GameSelectionState`
 - [X] Fix the game cant even load (just found that can't using `version:String` directly onto `Lib` class)
-
-## v1.1 (Small Updated)
-- [ ] Add a Cart display game onto `GameSelectionState`
-- [X] Add a crash handler
-- [ ] Add a `About` class
 
 ## Would do?
 - [ ] Try to make using like `new FlxTypedGroup<Class Name>();` can be run (impossible?)
