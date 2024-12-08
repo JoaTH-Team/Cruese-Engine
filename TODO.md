@@ -15,7 +15,7 @@
 
 ## v1.1 (Small Updated)
 - [ ] Add a Cart display game onto `GameSelectionState`
-- [ ] Add a crash handler
+- [X] Add a crash handler
 - [ ] Add a `About` class
 
 ## Would do?
