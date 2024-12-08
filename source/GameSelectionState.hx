@@ -85,7 +85,7 @@ class GameSelectionState extends FlxState
 		desc.cameras = [camHUD];
 		add(desc);
 
-		var versionDisplay:FlxText = new FlxText(1, 1, 0, 'Engine v' + Lib.application.meta.get("version") + " - Mods and API v" + GameHandler.versionA_M, 16);
+		var versionDisplay:FlxText = new FlxText(1, 1, 0, "Press F1 For display some about thing", 16);
 		versionDisplay.setFormat(FlxAssets.FONT_DEFAULT, 16, FlxColor.WHITE, FlxTextAlign.LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		versionDisplay.cameras = [camHUD];
 		add(versionDisplay);
@@ -121,6 +121,10 @@ class GameSelectionState extends FlxState
 		{
 			PlayState.trackerFolder = curSelected;
 			FlxG.switchState(new PlayState());
+		}
+		if (keys.F1)
+		{
+			openSubState(new AboutClass(FlxColor.BLACK));
 		}
 	}
 

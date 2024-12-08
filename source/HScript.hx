@@ -92,6 +92,7 @@ class HScript extends flixel.FlxBasic
 		set("FlxText", FlxText);
 		set("FlxTween", FlxTween);
 		set("FlxEase", FlxEase);
+		set("FlxColor", GameHandler.colorWorkaround());
 
 		set("game", PlayState.instance);
 		set("state", FlxG.state);

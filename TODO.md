@@ -2,7 +2,7 @@
 ## v1.1 (Small Updated)
 - [ ] Add a Cart display game onto `GameSelectionState`
 - [X] Add a crash handler
-- [ ] Add a `About` class
+- [X] Add a `About` class
 
 ## v1.0 (First/Inital Release) - DONE
 - [X] Create a simple hscript system
