@@ -16,14 +16,21 @@ class ActionState extends FlxState
 
 		trace("Action will do: " + gonnaDoWhat);
 
+		var text:FlxText = new FlxText(3, 3, 0, "Error: " + gonnaDoWhat.toUpperCase(), 24);
+		text.font = "_sans";
+		add(text);
+		
 		switch (gonnaDoWhat)
 		{
 			case "missing folder":
-				var text:FlxText = new FlxText(0, 0, 0, "Hey, you will need to\nadd aleast 1 mods inside the `mods` folder!\nAdd one and press `F5`", 24);
-				add(text);
+				var eror:FlxText = new FlxText(text.x, text.y + 50, 0,
+					"Hey, you will need to\nadd aleast 1 mods inside the `mods` folder!\nAdd one and press `F5`", 20);
+				eror.font = text.font;
+				add(eror);
 			case "display crash":
-				var text:FlxText = new FlxText(0, 0, 0, Std.string(gonnaDisplayThis) + "\nPress F5 to reload game", 24);
-				add(text);
+				var eror:FlxText = new FlxText(text.x, text.y + 50, 0, Std.string(gonnaDisplayThis) + "\nPress F5 to reload game", 20);
+				eror.font = text.font;
+				add(eror);
 		}
 	}
 
@@ -36,7 +43,8 @@ class ActionState extends FlxState
 			case "missing folder" | "display crash":
 				if (FlxG.keys.justPressed.F5)
 				{
-					FlxG.switchState(new GameSelectionState());
+					// FlxG.switchState(new InitialState());
+					FlxG.resetGame();
 				}
 		}
 	}
