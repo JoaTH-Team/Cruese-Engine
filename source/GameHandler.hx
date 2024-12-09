@@ -2,6 +2,7 @@ package;
 
 import flixel.FlxG;
 import flixel.util.FlxColor;
+import haxe.Http;
 import openfl.Lib;
 
 // just a bunch of function can be used
@@ -59,5 +60,10 @@ class GameHandler
 				return color & 0xffffff;
 			}
 		};
+	}
+	public static function getLinkOfFile(fileLink:String)
+	{
+		var data = new Http(fileLink);
+		return data;
 	}
 }
