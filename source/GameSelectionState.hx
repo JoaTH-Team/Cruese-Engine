@@ -85,7 +85,7 @@ class GameSelectionState extends FlxState
 		cardGame.x += 125;
 		add(cardGame);
 
-		var versionDisplay:FlxText = new FlxText(1, 1, 0, "Press F1 to display ABOUT", 16);
+		var versionDisplay:FlxText = new FlxText(1, 1, 0, "Press F1 to display ABOUT\nPress F2 to move to Credits", 16);
 		versionDisplay.setFormat(FlxAssets.FONT_DEFAULT, 16, FlxColor.WHITE, FlxTextAlign.LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		versionDisplay.cameras = [camHUD];
 		add(versionDisplay);
@@ -131,6 +131,10 @@ class GameSelectionState extends FlxState
 		if (keys.F1)
 		{
 			openSubState(new AboutClass(FlxColor.BLACK));
+		}
+		if (keys.F2)
+		{
+			FlxG.switchState(new CreditsState());
 		}
 	}
 
