@@ -27,4 +27,4 @@
 - [X] Fix the game cant even load (just found that can't using `version:String` directly onto `Lib` class)
 
 ## Would do?
-- [ ] Try to make using like `new FlxTypedGroup<Class Name>();` can be run (impossible?)
+- [X] Try to make using like `new FlxTypedGroup<Class Name>();` can be run (impossible?)

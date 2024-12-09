@@ -6,6 +6,7 @@ import flixel.FlxSprite;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
+import flixel.group.FlxGroup.FlxTypedGroup;
 import hscript.*;
 import openfl.Lib;
 import sys.io.File;
@@ -93,6 +94,11 @@ class HScript extends flixel.FlxBasic
 		set("FlxTween", FlxTween);
 		set("FlxEase", FlxEase);
 		set("FlxColor", GameHandler.colorWorkaround());
+
+		set("createTypedGroup", function() 
+		{
+			return new FlxTypedGroup<Dynamic>();
+		});
 
 		set("game", PlayState.instance);
 		set("state", FlxG.state);

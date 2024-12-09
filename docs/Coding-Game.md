@@ -41,6 +41,24 @@ function onCreate()
     add(images); 
 } 
 ``` 
+
+### Making a Group
+```haxe
+var group:FlxTypedGroup<FlxSprite> = [];
+
+function onCreate()
+{
+    group = createTypedGroup();
+    add(group);
+
+    for (i in 0...5)
+    {
+        var spr:FlxSprite = new FlxSprite(20 + (i * 10), FlxG.width / 2);
+        spr.makeGraphic(10, 10, FlxColor.fromRGB(FlxG.random.int(0, 255), FlxG.random.int(0, 255), FlxG.random.int(0, 255)));
+        group.add(spr);
+    }
+}
+```
 ## Some Function can be used
 * `onCreate` and `onCreatePost` are using for load a newly game
 * `onUpdate` and `onUpdatePost` are using for update the game every second
