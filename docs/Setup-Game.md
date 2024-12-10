@@ -20,10 +20,12 @@ Note that this file is required!
 ### Put icon (optional)
 If you wanna add a icon, make one and save this image as name `icon.png` and put in your mods game like `mods/<your game>/icon.png`
 
-### Put card to display (optional)
-Display more thing idk how to say
-
 Also the image icon should recommended at `150x150` though the game will auto resize them to only `75x75`
+
+### Put card to display (optional)
+You can add in a custom box-art card if you want.
+
+It should be in `mods/<your game>/cardGame.png`.
 
 ## Result (TADA)
 That all you wanna make your folder work now, you should able to added stuff into game and make them run for sure!

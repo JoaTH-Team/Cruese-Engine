@@ -66,6 +66,14 @@ function onCreate()
 * `onDestroy` are using for when destroy
 * `stopScript` destroys the current script
 * `importClass` is like `import` in normal Haxe
+    * Example: `importClass('package.Class');`
 * `importScript` allows access to a script's variables and functions
+    * Example: `var otherScript = importScript('path.to.script');`
+    * Also, don't worry about `.`, it will be autocorrected to `/`
 * `addScript` adds a new script and runs it
+    * Example: `addScript('path/to/script');`
 * `trace` is like `trace` in normal Haxe
+
+### Config (GameHandler) Functions
+* `exitGame(Bool)` - If `Bool` false, returns to game selection. Otherwise, actually exits the game.
+* `reziseApp(w, h)` - Resizes the game window. `w` and `h` should both be **integers**!
