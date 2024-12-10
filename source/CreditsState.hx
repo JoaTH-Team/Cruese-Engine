@@ -12,6 +12,10 @@ import flixel.math.FlxMath;
 import flixel.system.FlxAssets;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
+import sys.FileSystem;
+import sys.io.File;
+
+using StringTools;
 
 class CreditsState extends FlxState
 {
@@ -44,6 +48,9 @@ class CreditsState extends FlxState
 		camFollow = new FlxObject(80, 0, 0, 0);
 		camFollow.screenCenter(X);
 		add(camFollow);
+
+		for (mod in PolyHandler.getMods())
+			pushCredits(mod);
 
 		grpCredits = new FlxTypedGroup<FlxText>();
 		add(grpCredits);
@@ -124,5 +131,22 @@ class CreditsState extends FlxState
 	function unselectedable(num:Int):Bool
 	{
 		return creditsList[num].length <= 1;
+	}
+	function pushCredits(folder:String)
+	{
+		var file:String = Paths.file(folder + "/data/credits.txt", "mods");
+		trace(file);
+		if (FileSystem.exists(file))
+		{
+			var firstarray:Array<String> = File.getContent(file).split('\n');
+			for (i in firstarray)
+			{
+				var arr:Array<String> = i.replace('\\n', '\n').split("::");
+				if (arr.length >= 5)
+					arr.push(folder);
+				creditsList.push(arr);
+			}
+			creditsList.push(['']);
+		}
 	}
 }
