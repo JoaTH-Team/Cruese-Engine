@@ -99,4 +99,9 @@ class Paths {
 		trace('oops! sound $key returned null');
 		return null;
 	}
+
+	inline static public function getAsepriteAtlas(key:String):FlxAtlasFrames
+	{
+    		return FlxAtlasFrames.fromAseprite(image(key), file('images/$key.json'));
+	}
 }
