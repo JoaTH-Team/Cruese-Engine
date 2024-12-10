@@ -59,6 +59,7 @@ function onCreate()
     }
 }
 ```
+
 ## Some Function can be used
 * `onCreate` and `onCreatePost` are using for load a newly game
 * `onUpdate` and `onUpdatePost` are using for update the game every second
