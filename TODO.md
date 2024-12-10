@@ -6,6 +6,7 @@
 - [X] Edit more thing on `GameSelectionState` (still same)
 - [X] Fix card display overlap the About State
 - [X] Edit more thing on `ActionState`
+- [X] Try to make using like `new FlxTypedGroup<Class Name>();` can be run
 
 ## v1.1 (Small Updated) - DONE
 - [X] Add a card display game onto `GameSelectionState` (it likely display cartridge)
@@ -27,4 +28,3 @@
 - [X] Fix the game cant even load (just found that can't using `version:String` directly onto `Lib` class)
 
 ## Would do?
-- [X] Try to make using like `new FlxTypedGroup<Class Name>();` can be run (impossible?)
