@@ -51,12 +51,9 @@ class ActionState extends FlxState
 		}
 	}
 	// Move to a class script without using `FlxG.switchState(new ScriptedClass());`
-	public static function moveTo(pathScript:String)
+	public static function moveTo(pathScript:String, ?args:Array<Dynamic>)
 	{
-		var path:String = pathScript;
-		if (!pathScript.endsWith(".hxs"))
-			path = pathScript + ".hxs";
-		FlxG.switchState(new ScriptedClass(path));
+		FlxG.switchState(new ScriptedClass(pathScript, args));
 	}
 
 	public static function accessScriptClass()

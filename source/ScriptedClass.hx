@@ -1,18 +1,18 @@
 package;
 
+import flixel.FlxG;
 import flixel.addons.ui.FlxUIState;
 import sys.FileSystem;
 
 using StringTools;
 
 // This one will like emulated again the FlxState
-// On script, try using `Action.moveTo("data/classes/<file>.hxs", [<have any args if needed>]);`
+// On script, try using `Action.moveTo("<file>", [<have any args if needed>]);`
 class ScriptedClass extends FlxUIState
 {
-	var script:HScript = null;
+	public var script:HScript = null;
 
-	public static var instance:ScriptedClass;
-
+	public static var instance:ScriptedClass = null;
 	public static var trackerFolder:Int = 0;
 
 	public function new(filePath:String, ?args:Array<Dynamic>)
@@ -39,6 +39,13 @@ class ScriptedClass extends FlxUIState
 			}
 			script = new HScript(filePath, false);
 			script.execute(filePath, false);
+			
+			scriptExecute("new", args);
+		}
+		catch (e:Dynamic)
+		{
+			script = null;
+			trace('Error getting script from $filePath!\n$e');
 		}
 	}
 
@@ -53,7 +60,19 @@ class ScriptedClass extends FlxUIState
 	{
 		scriptExecute("onUpdate", [elapsed]);
 		super.update(elapsed);
+
+		if (FlxG.keys.justPressed.F4) // emergency exit
+		{
+			FlxG.switchState(new GameSelectionState());
+		}
+
 		scriptExecute("onUpdatePost", [elapsed]);
+	}
+
+	override function destroy()
+	{
+		scriptExecute("destroy", []);
+		super.destroy();
 	}
 
 	function scriptExecute(func:String, args:Array<Dynamic>)
