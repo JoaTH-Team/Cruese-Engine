@@ -71,7 +71,7 @@ class ScriptedClass extends FlxUIState
 
 	override function destroy()
 	{
-		scriptExecute("destroy", []);
+		scriptExecute("onDestroy", []);
 		super.destroy();
 	}
 
