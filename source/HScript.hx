@@ -86,6 +86,7 @@ class HScript extends flixel.FlxBasic
 		});
 
 		set("config", GameHandler);
+		set("Action", ActionState);
 		set("Paths", Paths);
 		// Flixel
 		set("FlxG", FlxG);

@@ -4,6 +4,8 @@ import flixel.FlxG;
 import flixel.FlxState;
 import flixel.text.FlxText;
 
+using StringTools;
+
 // This class will likely add some common action thing to do like missing folder, crash handler and stuff
 class ActionState extends FlxState
 {
@@ -47,5 +49,18 @@ class ActionState extends FlxState
 					FlxG.resetGame();
 				}
 		}
+	}
+	// Move to a class script without using `FlxG.switchState(new ScriptedClass());`
+	public static function moveTo(pathScript:String)
+	{
+		var path:String = pathScript;
+		if (!pathScript.endsWith(".hxs"))
+			path = pathScript + ".hxs";
+		FlxG.switchState(new ScriptedClass(path));
+	}
+
+	public static function accessScriptClass()
+	{
+		return ScriptedClass.instance;
 	}
 }
