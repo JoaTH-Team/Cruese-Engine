@@ -102,6 +102,6 @@ class Paths {
 
 	inline static public function getAsepriteAtlas(key:String):FlxAtlasFrames
 	{
-    		return FlxAtlasFrames.fromAseprite(image(key), file('images/$key.json'));
+		return FlxAtlasFrames.fromAseprite(image(key), file('images/$key.json'));
 	}
 }

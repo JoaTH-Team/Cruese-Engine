@@ -1,5 +1,9 @@
 # List TODO for Cruese Engine
-## v1.2 (Another small update but affect to gameplay)
+## v1.3 (HScript update)
+- [ ] Add HScript can code as classes (just find a workaround for this one)
+- [ ] Add a splashes whenever enter a game
+
+## v1.2 (Another small update but affect to gameplay) - DONE
 - [X] Make a switch state when there have no mods folder inside them (like will move to `ActionState` when have no folder contains `meta.json` in the `mods` folder)
 - [X] Display more thing on `About` state
 - [X] Add credits state on this engine (thought idk is should be?, but we will made mods can also add credits on them too)
