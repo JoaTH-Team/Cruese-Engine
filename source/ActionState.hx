@@ -58,7 +58,8 @@ class ActionState extends FlxState
 
 	public static function moveToSub(pathScript:String, ?args:Array<Dynamic>)
 	{
-		FlxG.state.openSubState(new ScriptedSubClass(pathScript, args));
+		var where = FlxG.state.subState != null ? FlxG.state.subState : FlxG.state;
+		where.openSubState(new ScriptedSubClass(pathScript, args));
 	}
 
 	public static function accessScriptClass()
