@@ -50,25 +50,4 @@ class ActionState extends FlxState
 				}
 		}
 	}
-	// Move to a class script without using `FlxG.switchState(new ScriptedClass());`
-	public static function moveTo(pathScript:String, ?args:Array<Dynamic>)
-	{
-		FlxG.switchState(new ScriptedClass(pathScript, args));
-	}
-
-	public static function moveToSub(pathScript:String, ?args:Array<Dynamic>)
-	{
-		var where = FlxG.state.subState != null ? FlxG.state.subState : FlxG.state;
-		where.openSubState(new ScriptedSubClass(pathScript, args));
-	}
-
-	public static function accessScriptClass()
-	{
-		return ScriptedClass.instance;
-	}
-
-	public static function accessScriptSubClass()
-	{
-		return ScriptedSubClass.instance;
-	}
 }

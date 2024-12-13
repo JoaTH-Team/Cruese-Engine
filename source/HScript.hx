@@ -97,6 +97,9 @@ class HScript extends flixel.FlxBasic
 		set("FlxEase", FlxEase);
 		set("FlxColor", GameHandler.colorWorkaround());
 
+		set("ScriptedClass", ScriptedClass);
+		set("ScriptedSubClass", ScriptedSubClass);
+
 		set("createTypedGroup", function() 
 		{
 			return new FlxTypedGroup<Dynamic>();
