@@ -3,6 +3,7 @@ package;
 import flixel.FlxG;
 import flixel.util.FlxColor;
 import haxe.Http;
+import haxe.Json;
 import openfl.Lib;
 
 // just a bunch of function can be used
@@ -65,5 +66,9 @@ class GameHandler
 	{
 		var data = new Http(fileLink);
 		return data;
+	}
+	public static function getJsonOfFile(fileJson:String)
+	{
+		return Json.parse(fileJson);
 	}
 }

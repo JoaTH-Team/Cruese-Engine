@@ -47,6 +47,13 @@ class InitialState extends FlxState
 		data.request();
 	}
 
+	var based:Json = null;
+
+	function loadedGame()
+	{
+		based = GameHandler.getJsonOfFile("gameSet.json");
+	}
+
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);

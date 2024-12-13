@@ -3,6 +3,7 @@
 - [X] Add HScript can code as classes (just find a workaround for this one)
 - [ ] Add a splashes whenever enter a game
 - [ ] Fix can't using `Action.moveTo()` and `Action.moveToSub()` (since it just got crash)
+- [ ] Make can be directly load into a selection mods by using the json
 
 ## v1.2 (Another small update but affect to gameplay) - DONE
 - [X] Make a switch state when there have no mods folder inside them (like will move to `ActionState` when have no folder contains `meta.json` in the `mods` folder)
