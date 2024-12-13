@@ -78,5 +78,5 @@ function onCreate()
 * `exitGame(Bool)` - If `Bool` false, returns to game selection. Otherwise, actually exits the game.
 * `reziseApp(w, h)` - Resizes the game window. `w` and `h` should both be **integers**!
 
-### Custom Classes and Sub Classes
-Still in work, not done yet
+### Custom Classes and Sub Classes (v1.3 and adove only)
+Still in development, not done yet?
