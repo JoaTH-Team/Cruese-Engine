@@ -21,8 +21,13 @@ class ScriptedSubClass extends FlxUISubState
 		try
 		{
 			var filePath = "mods/" + PolyHandler.trackedMods[trackerFolder].id + "/data/classes/" + fileName + ".hxs";
-			script = new HScript(filePath, false);
-			script.execute(filePath, false);
+
+			if (FileSystem.exists(filePath))
+				path = filePath;
+			
+			script = new HScript(path, false);
+			script.execute(path, false);
+			
 			
 			scriptExecute("new", args);
 		}
