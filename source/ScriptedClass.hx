@@ -7,7 +7,6 @@ import sys.FileSystem;
 using StringTools;
 
 // This one will like emulated again the FlxState
-// On script, try using `Action.moveTo("<file>", [<have any args if needed>]);`
 class ScriptedClass extends FlxUIState
 {
 	public var script:HScript = null;
@@ -15,14 +14,14 @@ class ScriptedClass extends FlxUIState
 	public static var instance:ScriptedClass = null;
 	public static var trackerFolder:Int = 0;
 
-	public function new(filePath:String, ?args:Array<Dynamic>)
+	public function new(fileName:String, ?args:Array<Dynamic>)
 	{
 		super();
 		instance = this;
 		trackerFolder = PlayState.trackerFolder;
 		try
 		{
-			var foldersToCheck:Array<String> = [];
+			/*var foldersToCheck:Array<String> = [];
 			foldersToCheck.push('mods/' + PolyHandler.trackedMods[trackerFolder].id + '/data/classes/');
 			for (folder in foldersToCheck)
 			{
@@ -36,7 +35,8 @@ class ScriptedClass extends FlxUIState
 						}
 					}
 				}
-			}
+			}*/
+			var filePath = "mods/" + PolyHandler.trackedMods[trackerFolder].id + "/data/classes/" + fileName + ".hxs";
 			script = new HScript(filePath, false);
 			script.execute(filePath, false);
 			
@@ -45,7 +45,7 @@ class ScriptedClass extends FlxUIState
 		catch (e:Dynamic)
 		{
 			script = null;
-			trace('Error getting script from $filePath!\n$e');
+			trace('Error getting script from $fileName!\n$e');
 		}
 	}
 

@@ -13,28 +13,14 @@ class ScriptedSubClass extends FlxUISubState
 	public static var instance:ScriptedSubClass = null;
 	public static var trackerFolder:Int = 0;
 
-	public function new(filePath:String, ?args:Array<Dynamic>)
+	public function new(fileName:String, ?args:Array<Dynamic>)
 	{
 		super();
 		instance = this;
 		trackerFolder = PlayState.trackerFolder;
 		try
 		{
-			var foldersToCheck:Array<String> = [];
-			foldersToCheck.push('mods/' + PolyHandler.trackedMods[trackerFolder].id + '/data/classes/');
-			for (folder in foldersToCheck)
-			{
-				if (FileSystem.exists(folder) && FileSystem.isDirectory(folder))
-				{
-					for (file in FileSystem.readDirectory(folder))
-					{
-						if (file.startsWith(filePath) && file.endsWith('.hxs'))
-						{
-							filePath = folder + file;
-						}
-					}
-				}
-			}
+			var filePath = "mods/" + PolyHandler.trackedMods[trackerFolder].id + "/data/classes/" + fileName + ".hxs";
 			script = new HScript(filePath, false);
 			script.execute(filePath, false);
 			
@@ -43,7 +29,7 @@ class ScriptedSubClass extends FlxUISubState
 		catch (e:Dynamic)
 		{
 			script = null;
-			trace('Error getting script from $filePath!\n$e');
+			trace('Error getting script from $fileName!\n$e');
 		}
 	}
 

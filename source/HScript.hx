@@ -71,9 +71,10 @@ class HScript extends flixel.FlxBasic
 		});
 
 		set("importScript", function(source:String) {
-			var name:String = StringTools.replace(source, '.', '/');
-			var script:HScript = new HScript('$name.hxs', false);
-			script.execute('$name.hxs', false);
+			var name:String = StringTools.replace(source, ".", "/");
+			var filePath = "mods/" + PolyHandler.trackedMods[PlayState.trackerFolder].id + "/data/" + name + ".hxs";
+			var script:HScript = new HScript(filePath, false);
+			script.execute(filePath, false);
 			return script.getAll();
 		});
 
