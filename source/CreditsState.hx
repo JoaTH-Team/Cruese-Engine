@@ -101,6 +101,8 @@ class CreditsState extends FlxState
 		{
 			if (creditsList[curSelected][2] != null)
 				FlxG.openURL(creditsList[curSelected][2]);
+			else if (creditsList[curSelected][2] == "nolink")
+				trace("has no link");
 			else
 				trace("not found the url link");
 		}
