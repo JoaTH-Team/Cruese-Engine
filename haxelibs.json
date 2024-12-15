@@ -38,7 +38,7 @@
     {
       "name": "hscript",
       "type": "haxelib",
-      "version": "2.5.1"
+      "version": "2.5.0"
     },
     {
       "name": "funkin.vis",
