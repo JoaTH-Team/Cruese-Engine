@@ -79,4 +79,10 @@ function onCreate()
 * `reziseApp(w, h)` - Resizes the game window. `w` and `h` should both be **integers**!
 
 ### Custom Classes and Sub Classes (v1.3 and adove only)
-Still in development, not done yet?
+To code them, create a `classes` folder in the `mods/<your game>/data/` folder and create a file whatever name you want but with the `.hxs` at last
+
+To make them work, put a code `FlxG.switchState(new ScriptedClass("<name file that on the classes folder>", ["/*have any args if needed*/"]));`
+
+Same as Sub-Class
+
+To return back to the default place, put a code `FlxG.switchState(new PlayState());`

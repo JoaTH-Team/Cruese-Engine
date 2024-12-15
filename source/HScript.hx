@@ -100,6 +100,10 @@ class HScript extends flixel.FlxBasic
 
 		set("ScriptedClass", ScriptedClass);
 		set("ScriptedSubClass", ScriptedSubClass);
+		// Same but replace `Class` with `State`
+		set("ScriptedState", ScriptedClass);
+		set("ScriptedSubState", ScriptedSubClass);
+		set("PlayState", PlayState);
 
 		set("createTypedGroup", function() 
 		{
