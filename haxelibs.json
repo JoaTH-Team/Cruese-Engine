@@ -1,0 +1,83 @@
+{
+  "dependencies": [
+    {
+      "name": "lime",
+      "type": "haxelib",
+      "version": "8.2.1"
+    },
+    {
+      "name": "openfl",
+      "type": "haxelib",
+      "version": "9.4.0"
+    },
+    {
+      "name": "flixel",
+      "type": "haxelib",
+      "version": "5.8.0"
+    },
+    {
+      "name": "flixel-addons",
+      "type": "haxelib",
+      "version": "3.2.3"
+    },
+    {
+      "name": "flixel-ui",
+      "type": "haxelib",
+      "version": "2.6.1"
+    },
+    {
+      "name": "hxcpp",
+      "type": "haxelib",
+      "version": "4.3.2"
+    },
+    {
+      "name": "hxcpp-debug-server",
+      "type": "haxelib",
+      "version": "1.2.4"
+    },
+    {
+      "name": "hscript",
+      "type": "haxelib",
+      "version": "2.5.1"
+    },
+    {
+      "name": "funkin.vis",
+      "type": "git",
+      "dir": null,
+      "ref": "22b1ce089dd924f15cdc4632397ef3504d464e90",
+      "url": "https://github.com/FunkinCrew/funkVis"
+    },
+    {
+      "name": "grig.audio",
+      "type": "git",
+      "dir": "src",
+      "ref": "cbf91e2180fd2e374924fe74844086aab7891666",
+      "url": "https://gitlab.com/haxe-grig/grig.audio.git"
+    },
+    {
+      "name": "polymod",
+      "type": "haxelib",
+      "version": "1.8.0"
+    },
+    {
+      "name": "thx.core",
+      "type": "git",
+      "ref": "master",
+      "url": "https://github.com/fponticelli/thx.core.git"
+    },
+    {
+      "name": "thx.semver",
+      "type": "haxelib"
+    },
+    {
+      "name": "jsonpath",
+      "type": "git",
+      "ref": "main",
+      "url": "https://github.com/EliteMasterEric/jsonpath.git"
+    },
+    {
+      "name": "jsonpatch",
+      "type": "haxelib"
+    }
+  ]
+}

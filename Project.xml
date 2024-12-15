@@ -38,11 +38,11 @@
 
 	<!-- _______________________________ Libraries ______________________________ -->
 
-	<haxelib name="flixel" />
-	<haxelib name="flixel-addons" />
-	<haxelib name="flixel-ui" />
-	<haxelib name="hscript" />
-	<haxelib name="polymod" />
+	<haxelib name="flixel" version="5.8.0" />
+	<haxelib name="flixel-addons" version="3.2.3" />
+	<haxelib name="flixel-ui" version="2.6.1" />
+	<haxelib name="hscript" version="2.5.1" />
+	<haxelib name="polymod" version="1.8.0" />
 
 	<!-- ______________________________ Haxedefines _____________________________ -->
 
