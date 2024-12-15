@@ -59,6 +59,34 @@ function onCreate()
     }
 }
 ```
+### Switch State (May only v1.3 and above work)
+```haxe
+// file on data/main.hxs and are loaded by PlayState
+function onCreate() {
+    var text:FlxText = new FlxText(0, 0, 0, "Press ENTER to Switch to State 01", 32);
+    text.screenCenter(0x00);
+    add(text);
+}
+
+function onUpdate(elapsed:Float) {
+    if (FlxG.keys.justPressed.ENTER) {
+        FlxG.switchState(new ScriptedState("main2"));
+    }
+}
+
+// file on data/classes/main2.hxs
+function onCreate() {
+    var text:FlxText = new FlxText(0, 0, 0, "Press ENTER to Switch to State 00", 32);
+    text.screenCenter(0x00);
+    add(text);
+}
+
+function onUpdate(elapsed:Float) {
+    if (FlxG.keys.justPressed.ENTER) {
+        FlxG.switchState(new PlayState());
+    }
+}
+```
 
 ## Some Function can be used
 * `onCreate` and `onCreatePost` are using for load a newly game
@@ -77,12 +105,3 @@ function onCreate()
 ### Config (GameHandler) Functions
 * `exitGame(Bool)` - If `Bool` false, returns to game selection. Otherwise, actually exits the game.
 * `reziseApp(w, h)` - Resizes the game window. `w` and `h` should both be **integers**!
-
-### Custom Classes and Sub Classes (v1.3 and adove only)
-To code them, create a `classes` folder in the `mods/<your game>/data/` folder and create a file whatever name you want but with the `.hxs` at last
-
-To make them work, put a code `FlxG.switchState(new ScriptedClass("<name file that on the classes folder>", ["/*have any args if needed*/"]));`
-
-Same as Sub-Class
-
-To return back to the default place, put a code `FlxG.switchState(new PlayState());`
