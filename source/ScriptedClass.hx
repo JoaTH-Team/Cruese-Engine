@@ -13,6 +13,7 @@ class ScriptedClass extends FlxUIState
 
 	public static var instance:ScriptedClass = null;
 	public static var trackerFolder:Int = 0;
+	var path:String = "";
 
 	public function new(fileName:String, ?args:Array<Dynamic>)
 	{

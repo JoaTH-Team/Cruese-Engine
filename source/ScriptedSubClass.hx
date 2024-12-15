@@ -12,6 +12,7 @@ class ScriptedSubClass extends FlxUISubState
 
 	public static var instance:ScriptedSubClass = null;
 	public static var trackerFolder:Int = 0;
+	var path:String = "";
 
 	public function new(fileName:String, ?args:Array<Dynamic>)
 	{
