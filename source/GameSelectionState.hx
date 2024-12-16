@@ -144,11 +144,11 @@ class GameSelectionState extends FlxState
 		if (mouse.overlaps(aboutButton))
 		{
 			aboutButton.animation.play("selected", true);
-			aboutButton.animation.finishCallback = function(name:String)
+			aboutButton.animation.onFinish.add(function(name:String)
 			{
 				if (name == "selected")
 					aboutButton.animation.play("finishedAnim", true);
-			};
+			});
 			if (mouse.justPressed)
 			{
 				openSubState(new AboutClass());

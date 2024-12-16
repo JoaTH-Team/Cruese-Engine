@@ -26,11 +26,11 @@ class ActionState extends FlxState
 		{
 			case "missing folder":
 				var eror:FlxText = new FlxText(text.x, text.y + 50, 0,
-					"Hey, you will need to\nadd aleast 1 mods inside the `mods` folder!\nAdd one and press `F5`", 20);
+					"Hey, you will need to\nadd aleast 1 mods inside the `mods` folder!\nAdd one and press `F5` to reload game", 20);
 				eror.font = text.font;
 				add(eror);
 			case "display crash":
-				var eror:FlxText = new FlxText(text.x, text.y + 50, 0, Std.string(gonnaDisplayThis) + "\nPress F5 to reload game", 20);
+				var eror:FlxText = new FlxText(text.x, text.y + 50, 0, Std.string(gonnaDisplayThis) + "\nPress `F5` to reload game", 20);
 				eror.font = text.font;
 				add(eror);
 		}
