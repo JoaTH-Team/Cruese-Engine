@@ -12,6 +12,7 @@ import flixel.math.FlxMath;
 import flixel.system.FlxAssets;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
+import haxe.Json;
 import haxe.io.Bytes;
 import openfl.Lib;
 import openfl.display.Bitmap;
@@ -100,6 +101,7 @@ class GameSelectionState extends FlxState
 		// add(aboutButton);
 
 		changeSelection();
+		// selectGame();
 		FlxG.camera.follow(camFollow, null, 0.15);
 	}
 
@@ -125,8 +127,7 @@ class GameSelectionState extends FlxState
 		}
 		if (keys.ENTER)
 		{
-			PlayState.trackerFolder = curSelected;
-			FlxG.switchState(new PlayState());
+			switchToGame();
 		}
 		if (keys.F1)
 		{
@@ -136,6 +137,24 @@ class GameSelectionState extends FlxState
 		{
 			FlxG.switchState(new CreditsState());
 		}
+	}
+	/*var gameSet:Dynamic = null;
+
+		// For `gameSet.json`
+		function selectGame()
+		{
+			gameSet = Json.parse("mods/gameSet.json");
+			if (gameSet.allowToLoadRN == true)
+			{
+				if (PolyHandler.getMods().contains(gameSet.gameLoad))
+					trace(PolyHandler.getMods().contains(gameSet.gameLoad));
+				// switchToGame();
+			}
+	}*/
+	function switchToGame()
+	{
+		PlayState.trackerFolder = curSelected;
+		FlxG.switchState(new PlayState());
 	}
 
 	function handleButton()
