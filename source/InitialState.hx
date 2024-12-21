@@ -19,7 +19,7 @@ class InitialState extends FlxState
 
 		if (PolyHandler.trackedMods.length > 0)
 		{
-			FlxG.switchState(new GameSelectionState());
+			FlxG.switchState(new SplashesState());
 		}
 		else
 		{

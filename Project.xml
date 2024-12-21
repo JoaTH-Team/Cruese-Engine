@@ -97,4 +97,10 @@
 	<haxedef name="POLYMOD_MOD_METADATA_FILE" value="meta.json" />
 	<haxedef name="POLYMOD_MOD_ICON_FILE" value="icon.png" />
 	<haxedef name="POLYMOD_DEBUG" value="true" if="debug" />
+
+	<launchImage path="assets/images/logo.png" />
+	<launchStoryboard template="splash.storyboard" assetsPath="assets/images/logo.png"
+		RGB="0x000000"
+		contentMode="center">
+	</launchStoryboard>
 </project>

@@ -1,9 +1,9 @@
 # List TODO for Cruese Engine
-## v1.3 (HScript update)
+## v1.3 (HScript update) - DONE
 - [X] Add HScript can code as classes (just find a workaround for this one)
-- [ ] Add a splashes whenever enter a game
+- [X] Add a splashes whenever enter a game
 - [X] Fix can't load the file when switched to `ScriptedClass` and `ScriptedSubClass` (just don't put them on when load game right on the `PlayState`)
-- [X] Make can be directly load into a selection mods by using the json (scrapped)
+- [-] Make can be directly load into a selection mods by using the json (scrapped)
 - [X] Fix Paths (i just notice that we would need manual patht the file so i fix this by using `PolyHandler`)
 
 ## v1.2 (Another small update but affect to gameplay) - DONE

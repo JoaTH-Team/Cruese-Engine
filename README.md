@@ -1,4 +1,6 @@
 # Cruese Engine
+![logo](logo.png)
+
 A game engine using hscript with a scriptable to make a fully game without config too much!
 
 # Feature
