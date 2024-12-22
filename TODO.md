@@ -1,4 +1,8 @@
 # List TODO for Cruese Engine
+## v1.3.1 (Little Fixed) - DONE
+- [X] Make Splashes can be skipping by press Enter
+- [X] Fix `engineCredits` From `Mad by JoaTH Team` to `Made by JoaTH Team`
+
 ## v1.3 (HScript update) - DONE
 - [X] Add HScript can code as classes (just find a workaround for this one)
 - [X] Add a splashes whenever enter a game
