@@ -39,9 +39,19 @@ class PlayState extends FlxState
 
 		for (script in scriptArray) {
 			script?.set('addScript', function(path:String) {
-				scriptArray.push(new HScript('$path.hxs'));
+				scriptArray.push(new HScript(foldersToCheck[0] + '$path.hxs'));
 			});
 		}
+
+		for (script in luaArray)
+		{
+			script?.setFunction('addScript', function(path:String)
+			{
+				luaArray.push(new LuaScript(foldersToCheck[0] + '$path.lua'));
+			});
+		}
+
+		callOnScripts("onCreate", []); // how could i forgot this????
 
 		super.create();
 
@@ -58,7 +68,7 @@ class PlayState extends FlxState
 		for (i in 0...luaArray.length)
 		{
 			final script:LuaScript = luaArray[i];
-			script.setFuction(funcName, funcArgs);
+			script.callFunction(funcName, funcArgs);
 		}
 	}
 

@@ -80,9 +80,10 @@
       "type": "haxelib"
     },
     {
-      "name": "hxluajit",
-      "type": "haxelib",
-      "version": "1.0.3"
+      "name": "linc_luajit",
+      "type": "git",
+      "ref": "main",
+      "url": "https://github.com/AndreiRudenko/linc_luajit.git"
     }
   ]
 }
