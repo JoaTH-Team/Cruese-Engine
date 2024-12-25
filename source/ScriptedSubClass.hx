@@ -28,8 +28,7 @@ class ScriptedSubClass extends FlxUISubState
 			
 			script = new HScript(path, false);
 			script.execute(path, false);
-			
-			
+
 			scriptExecute("new", args);
 		}
 		catch (e:Dynamic)

@@ -9,7 +9,7 @@ class PolyHandler
 {
 	static final MOD_DIR:String = 'mods';
 	static final CORE_DIR:String = 'assets';
-	static final API_VERSION:String = '1.0.0';
+	static final API_VERSION:String = '2.0.0';
 
 	public static var trackedMods:Array<ModMetadata> = [];
 
@@ -21,6 +21,7 @@ class PolyHandler
 		'json' => TEXT,
 		'txt' => TEXT,
 		'hxs' => TEXT,
+		'lua' => TEXT, // omg lua support???
 		'ttf' => FONT,
 		'otf' => FONT
 	];
@@ -89,6 +90,7 @@ class PolyHandler
 		final output:ParseRules = ParseRules.getDefault();
 		output.addType("txt", TextFileFormat.LINES);
 		output.addType("hxs", TextFileFormat.PLAINTEXT);
+		output.addType("lua", TextFileFormat.PLAINTEXT);
 		return output != null ? output : null;
 	}
 

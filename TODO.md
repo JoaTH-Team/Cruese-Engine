@@ -1,4 +1,8 @@
 # List TODO for Cruese Engine
+## v2.0 (Lua update)
+- [ ] Added Lua script
+- [ ] Make `GameSelectionState` can be editable
+
 ## v1.3.1 (Little Fixed) - DONE
 - [X] Make Splashes can be skipping by press Enter
 - [X] Fix `engineCredits` From `Mad by JoaTH Team` to `Made by JoaTH Team`

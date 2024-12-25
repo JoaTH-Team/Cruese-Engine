@@ -44,6 +44,7 @@
 	<haxelib name="flixel-ui" version="2.6.1" />
 	<haxelib name="hscript" version="2.5.0" />
 	<haxelib name="polymod" version="1.8.0" />
+	<haxelib name="hxluajit" version="1.0.3" />
 
 	<!-- ______________________________ Haxedefines _____________________________ -->
 

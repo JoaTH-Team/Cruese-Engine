@@ -1,6 +1,7 @@
 package;
 
 import flixel.FlxG;
+import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import haxe.Http;
 import haxe.Json;
@@ -10,7 +11,10 @@ import openfl.Lib;
 class GameHandler
 {
 	// public static var version:String = Lib.application.meta.get("version");
-	public static var versionA_M:String = "1.0.0";
+	public static var versionA_M:String = "2.0.0";
+
+	// Bunch Variable for Lua
+	public static var gameText:Map<String, FlxText> = new Map<String, FlxText>();
 
 	public static function exitGame(?exitActually:Bool = false)
 	{

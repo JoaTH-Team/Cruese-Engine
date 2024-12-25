@@ -8,6 +8,7 @@ using StringTools;
 class PlayState extends FlxState
 {
 	public var scriptArray:Array<HScript> = [];
+	public var luaArray:Array<LuaScript> = [];
 
 	public static var trackerFolder:Int = 0;
 	public static var instance:PlayState = null;
@@ -27,6 +28,10 @@ class PlayState extends FlxState
 					if (file.endsWith('.hxs'))
 					{
 						scriptArray.push(new HScript(folder + file));
+					}
+					if (file.endsWith('.lua'))
+					{
+						luaArray.push(new LuaScript(folder + file));
 					}
 				}
 			}
@@ -49,6 +54,11 @@ class PlayState extends FlxState
 		{
 			final script:HScript = scriptArray[i];
 			script.call(funcName, funcArgs);
+		}
+		for (i in 0...luaArray.length)
+		{
+			final script:LuaScript = luaArray[i];
+			script.setFuction(funcName, funcArgs);
 		}
 	}
 
