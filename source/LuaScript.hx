@@ -11,6 +11,8 @@ import llua.Lua;
 import llua.LuaL;
 import llua.State;
 
+using StringTools;
+
 class LuaScript extends FlxBasic
 {
 	public static var lua:State;
@@ -154,57 +156,15 @@ class LuaScript extends FlxBasic
 		setFunction("setTextFont", function(tag:String, font:String)
 		{
 			var text:FlxText = getTagObject("gameText", tag);
-			return text.font = Paths.font(font);
+			var fonts:String = font;
+			if (!fonts.endsWith(".ttf") && !fonts.endsWith(".otf"))
+				fonts += ".ttf";
+			return text.font = Paths.font(fonts);
 		});
 		setFunction("setTextAlignment", function(tag:String, alignment:String)
 		{
 			var text:FlxText = getTagObject("gameText", tag);
 			return text.alignment = alignment;
-		});
-		setFunction("getTextString", function(tag:String)
-		{
-			var text:FlxText = getTagObject("gameText", tag);
-			return text.text;
-		});
-		setFunction("getTextWidth", function(tag:String)
-		{
-			var text:FlxText = getTagObject("gameText", tag);
-			return text.width;
-		});
-		setFunction("getTextHeight", function(tag:String)
-		{
-			var text:FlxText = getTagObject("gameText", tag);
-			return text.height;
-		});
-		setFunction("getTextActive", function(tag:String)
-		{
-			var text:FlxText = getTagObject("gameText", tag);
-			return text.active;
-		});
-		setFunction("getTextVisible", function(tag:String)
-		{
-			var text:FlxText = getTagObject("gameText", tag);
-			return text.visible;
-		});
-		setFunction("getTextPosition", function(tag:String)
-		{
-			var text:FlxText = getTagObject("gameText", tag);
-			return [text.x, text.y];
-		});
-		setFunction("getTextSize", function(tag:String)
-		{
-			var text:FlxText = getTagObject("gameText", tag);
-			return text.size;
-		});
-		setFunction("getTextColor", function(tag:String)
-		{
-			var text:FlxText = getTagObject("gameText", tag);
-			return text.color;
-		});
-		setFunction("getTextAlignment", function(tag:String)
-		{
-			var text:FlxText = getTagObject("gameText", tag);
-			return text.alignment;
 		});
 		setFunction("setTextProperty", function(tag:String, property:String, value:Dynamic)
 		{
