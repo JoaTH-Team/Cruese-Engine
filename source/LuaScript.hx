@@ -133,36 +133,35 @@ class LuaScript extends FlxBasic
 		});
 		setFunction("setText", function(tag:String, text:String)
 		{
-			GameHandler.gameText.get(tag).text = text;
+			return GameHandler.gameText.get(tag).text = text;
 		});
 		setFunction("setTextSize", function(tag:String, size:Int)
 		{
-			GameHandler.gameText.get(tag).size = size;
+			return GameHandler.gameText.get(tag).size = size;
 		});
 		setFunction("setTextColor", function(tag:String, color:Int)
 		{
-			GameHandler.gameText.get(tag).color = FlxColor.fromString("0xFF" + color);
+			return GameHandler.gameText.get(tag).color = FlxColor.fromString("0xFF" + color);
 		});
 		setFunction("setTextPosition", function(tag:String, x:Float, y:Float)
 		{
-			GameHandler.gameText.get(tag).setPosition(x, y);
+			return GameHandler.gameText.get(tag).setPosition(x, y);
 		});
 		setFunction("setTextWidth", function(tag:String, width:Int)
 		{
-			GameHandler.gameText.get(tag).width = width;
+			return GameHandler.gameText.get(tag).width = width;
 		});
 		setFunction("setTextVisible", function(tag:String, visible:Bool)
 		{
-			GameHandler.gameText.get(tag).visible = visible;
+			return GameHandler.gameText.get(tag).visible = visible;
 		});
 		setFunction("setTextActive", function(tag:String, active:Bool)
 		{
-			GameHandler.gameText.get(tag).active = active;
+			return GameHandler.gameText.get(tag).active = active;
 		});
-		setFunction("removeText", function(tag:String)
+		setFunction("removeText", function(tag:String, splice:Bool = false)
 		{
-			GameHandler.gameText.get(tag).kill();
-			GameHandler.gameText.remove(tag);
+			return FlxG.state.remove(GameHandler.gameText.get(tag), splice);
 		});
 		setFunction("destroyText", function(tag:String)
 		{
