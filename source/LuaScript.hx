@@ -71,50 +71,28 @@ class LuaScript extends FlxBasic
 	}
 	function loadedMainFunction():Void
 	{
-		setFunction("setProperty", function(variable:String, value:Dynamic)
+		setFunction("setVar", function(name:String, value:Dynamic)
 		{
-			var parts = variable.split(".");
-			if (parts.length < 2)
-				return;
-
-			var mapName = parts[0];
-			var key = parts[1];
-			var property = parts[2];
-
-			switch (mapName)
-			{
-				case "gameText":
-					var text = GameHandler.gameText.get(key);
-					if (text != null)
-						Reflect.setField(text, property, value);
-				case "gameImages":
-					var image = GameHandler.gameImages.get(key);
-					if (image != null)
-						Reflect.setField(image, property, value);
-			}
+			Convert.toLua(lua, value);
+			Lua.setglobal(lua, name);
 		});
-		setFunction("getProperty", function(variable:String)
+		setFunction("getVar", function(name:String)
 		{
-			var parts = variable.split(".");
-			if (parts.length < 2)
-				return null;
-
-			var mapName = parts[0];
-			var key = parts[1];
-			var property = parts[2];
-
-			switch (mapName)
+			return Lua.getglobal(lua, name);
+		});
+		setFunction("deleteVar", function(name:String)
+		{
+			Lua.pushnil(lua);
+			Lua.setglobal(lua, name);
+		});
+		setFunction("callFunction", function(name:String, args:Array<Dynamic>)
+		{
+			Lua.getglobal(lua, name);
+			for (arg in args)
 			{
-				case "gameText":
-					var text = GameHandler.gameText.get(key);
-					if (text != null)
-						return Reflect.field(text, property);
-				case "gameImages":
-					var image = GameHandler.gameImages.get(key);
-					if (image != null)
-						return Reflect.field(image, property);
+				Convert.toLua(lua, arg);
 			}
-			return null;
+			Lua.pcall(lua, args.length, 0, 0);
 		});
 	}
 
@@ -125,101 +103,271 @@ class LuaScript extends FlxBasic
 			var text = new FlxText(x, y, width, text, size);
 			text.active = true;
 			GameHandler.gameText.set(tag, text);
-			return text;
-		});
-		setFunction("addText", function(tag:String)
-		{
-			FlxG.state.add(GameHandler.gameText.get(tag));
-		});
-		setFunction("setText", function(tag:String, text:String)
-		{
-			return GameHandler.gameText.get(tag).text = text;
-		});
-		setFunction("setTextSize", function(tag:String, size:Int)
-		{
-			return GameHandler.gameText.get(tag).size = size;
-		});
-		setFunction("setTextColor", function(tag:String, color:Int)
-		{
-			return GameHandler.gameText.get(tag).color = FlxColor.fromString("0xFF" + color);
-		});
-		setFunction("setTextPosition", function(tag:String, x:Float, y:Float)
-		{
-			return GameHandler.gameText.get(tag).setPosition(x, y);
-		});
-		setFunction("setTextWidth", function(tag:String, width:Int)
-		{
-			return GameHandler.gameText.get(tag).width = width;
-		});
-		setFunction("setTextVisible", function(tag:String, visible:Bool)
-		{
-			return GameHandler.gameText.get(tag).visible = visible;
-		});
-		setFunction("setTextActive", function(tag:String, active:Bool)
-		{
-			return GameHandler.gameText.get(tag).active = active;
+			return FlxG.state.add(text);
 		});
 		setFunction("removeText", function(tag:String, splice:Bool = false)
 		{
-			return FlxG.state.remove(GameHandler.gameText.get(tag), splice);
+			var text:FlxText = getTagObject("gameText", tag);
+			text.kill();
+			return FlxG.state.remove(text, splice);
+		});
+		setFunction("reviveText", function(tag:String)
+		{
+			var text:FlxText = getTagObject("gameText", tag);
+			return text.revive();
 		});
 		setFunction("destroyText", function(tag:String)
 		{
-			GameHandler.gameText.get(tag).destroy();
-			GameHandler.gameText.remove(tag);
+			var text:FlxText = getTagObject("gameText", tag);
+			return text.destroy();
 		});
-		setFunction("destroyAllText", function()
+		setFunction("setTextColor", function(tag:String, color:String = "")
 		{
-			for (text in GameHandler.gameText)
-			{
-				text.destroy();
-			}
-			GameHandler.gameText.clear();
+			var text:FlxText = getTagObject("gameText", tag);
+			return text.color = FlxColor.fromString("0xFF" + color.toUpperCase());
+		});
+		setFunction("setTextActive", function(tag:String, active:Bool)
+		{
+			var text:FlxText = getTagObject("gameText", tag);
+			return text.active = active;
+		});
+		setFunction("setTextVisible", function(tag:String, visible:Bool)
+		{
+			var text:FlxText = getTagObject("gameText", tag);
+			return text.visible = visible;
+		});
+		setFunction("setTextPosition", function(tag:String, x:Float, y:Float)
+		{
+			var text:FlxText = getTagObject("gameText", tag);
+			return text.setPosition(x, y);
+		});
+		setFunction("setTextSize", function(tag:String, size:Int)
+		{
+			var text:FlxText = getTagObject("gameText", tag);
+			return text.size = size;
+		});
+		setFunction("setTextString", function(tag:String, content:String)
+		{
+			var text:FlxText = getTagObject("gameText", tag);
+			return text.text = content;
+		});
+		setFunction("setTextFont", function(tag:String, font:String)
+		{
+			var text:FlxText = getTagObject("gameText", tag);
+			return text.font = Paths.font(font);
+		});
+		setFunction("setTextAlignment", function(tag:String, alignment:String)
+		{
+			var text:FlxText = getTagObject("gameText", tag);
+			return text.alignment = alignment;
+		});
+		setFunction("getTextString", function(tag:String)
+		{
+			var text:FlxText = getTagObject("gameText", tag);
+			return text.text;
+		});
+		setFunction("getTextWidth", function(tag:String)
+		{
+			var text:FlxText = getTagObject("gameText", tag);
+			return text.width;
+		});
+		setFunction("getTextHeight", function(tag:String)
+		{
+			var text:FlxText = getTagObject("gameText", tag);
+			return text.height;
+		});
+		setFunction("getTextActive", function(tag:String)
+		{
+			var text:FlxText = getTagObject("gameText", tag);
+			return text.active;
+		});
+		setFunction("getTextVisible", function(tag:String)
+		{
+			var text:FlxText = getTagObject("gameText", tag);
+			return text.visible;
+		});
+		setFunction("getTextPosition", function(tag:String)
+		{
+			var text:FlxText = getTagObject("gameText", tag);
+			return [text.x, text.y];
+		});
+		setFunction("getTextSize", function(tag:String)
+		{
+			var text:FlxText = getTagObject("gameText", tag);
+			return text.size;
+		});
+		setFunction("getTextColor", function(tag:String)
+		{
+			var text:FlxText = getTagObject("gameText", tag);
+			return text.color;
+		});
+		setFunction("getTextAlignment", function(tag:String)
+		{
+			var text:FlxText = getTagObject("gameText", tag);
+			return text.alignment;
+		});
+		setFunction("setTextProperty", function(tag:String, property:String, value:Dynamic)
+		{
+			var text:FlxText = getTagObject("gameText", tag);
+			Reflect.setProperty(text, property, value);
+			return value;
+		});
+		setFunction("getTextProperty", function(tag:String, property:String)
+		{
+			var text:FlxText = getTagObject("gameText", tag);
+			return Reflect.getProperty(text, property);
 		});
 	}
 
 	function loadedImagesFunction():Void
 	{
-		setFunction("createImage", function(tag:String, x:Float = 0, y:Float = 0, path:String = "")
+		setFunction("createSprite", function(tag:String, x:Float = 0, y:Float = 0, image:String = "")
 		{
-			var image = new FlxSprite(x, y, path);
-			image.active = true;
-			GameHandler.gameImages.set(tag, image);
-			return image;
+			var sprite = new FlxSprite(x, y, Paths.image(image));
+			sprite.active = true;
+			GameHandler.gameImages.set(tag, sprite);
+			return FlxG.state.add(sprite);
 		});
-		setFunction("addImage", function(tag:String)
+		setFunction("removeSprite", function(tag:String, splice:Bool = false)
 		{
-			FlxG.state.add(GameHandler.gameImages.get(tag));
+			var sprite:FlxSprite = getTagObject("gameImages", tag);
+			sprite.kill();
+			return FlxG.state.remove(sprite, splice);
 		});
-		setFunction("setImagePosition", function(tag:String, x:Float, y:Float)
+		setFunction("reviveSprite", function(tag:String)
 		{
-			GameHandler.gameImages.get(tag).setPosition(x, y);
+			var sprite:FlxSprite = getTagObject("gameImages", tag);
+			return sprite.revive();
 		});
-		setFunction("setImageVisible", function(tag:String, visible:Bool)
+		setFunction("destroySprite", function(tag:String)
 		{
-			GameHandler.gameImages.get(tag).visible = visible;
+			var sprite:FlxSprite = getTagObject("gameImages", tag);
+			return sprite.destroy();
 		});
-		setFunction("setImageActive", function(tag:String, active:Bool)
+		setFunction("setSpriteActive", function(tag:String, active:Bool)
 		{
-			GameHandler.gameImages.get(tag).active = active;
+			var sprite:FlxSprite = getTagObject("gameImages", tag);
+			return sprite.active = active;
 		});
-		setFunction("removeImage", function(tag:String)
+		setFunction("setSpriteVisible", function(tag:String, visible:Bool)
 		{
-			GameHandler.gameImages.get(tag).kill();
-			GameHandler.gameImages.remove(tag);
+			var sprite:FlxSprite = getTagObject("gameImages", tag);
+			return sprite.visible = visible;
 		});
-		setFunction("destroyImage", function(tag:String)
+		setFunction("setSpritePosition", function(tag:String, x:Float, y:Float)
 		{
-			GameHandler.gameImages.get(tag).destroy();
-			GameHandler.gameImages.remove(tag);
+			var sprite:FlxSprite = getTagObject("gameImages", tag);
+			return sprite.setPosition(x, y);
 		});
-		setFunction("destroyAllImage", function()
+		setFunction("setSpriteImage", function(tag:String, image:String)
 		{
-			for (image in GameHandler.gameImages)
-			{
-				image.destroy();
-			}
-			GameHandler.gameImages.clear();
+			var sprite:FlxSprite = getTagObject("gameImages", tag);
+			return sprite.loadGraphic(Paths.image(image));
 		});
+		setFunction("setSpriteAlpha", function(tag:String, alpha:Float)
+		{
+			var sprite:FlxSprite = getTagObject("gameImages", tag);
+			return sprite.alpha = alpha;
+		});
+		setFunction("setSpriteColor", function(tag:String, color:String)
+		{
+			var sprite:FlxSprite = getTagObject("gameImages", tag);
+			return sprite.color = FlxColor.fromString("0xFF" + color.toUpperCase());
+		});
+		setFunction("getSpritePosition", function(tag:String)
+		{
+			var sprite:FlxSprite = getTagObject("gameImages", tag);
+			return [sprite.x, sprite.y];
+		});
+		setFunction("getSpriteScale", function(tag:String)
+		{
+			var sprite:FlxSprite = getTagObject("gameImages", tag);
+			return sprite.scale;
+		});
+		setFunction("getSpriteAlpha", function(tag:String)
+		{
+			var sprite:FlxSprite = getTagObject("gameImages", tag);
+			return sprite.alpha;
+		});
+		setFunction("getSpriteColor", function(tag:String)
+		{
+			var sprite:FlxSprite = getTagObject("gameImages", tag);
+			return sprite.color;
+		});
+		setFunction("getSpriteFrame", function(tag:String)
+		{
+			var sprite:FlxSprite = getTagObject("gameImages", tag);
+			return sprite.frame;
+		});
+		setFunction("getSpriteActive", function(tag:String)
+		{
+			var sprite:FlxSprite = getTagObject("gameImages", tag);
+			return sprite.active;
+		});
+		setFunction("getSpriteVisible", function(tag:String)
+		{
+			var sprite:FlxSprite = getTagObject("gameImages", tag);
+			return sprite.visible;
+		});
+		setFunction("makeAnim", function(tag:String, name:String, frames:Array<Int>, frameRate:Int, loop:Bool)
+		{
+			var sprite:FlxSprite = getTagObject("gameImages", tag);
+			return sprite.animation.add(name, frames, frameRate, loop);
+		});
+		setFunction("makeAnimByPrefix", function(tag:String, name:String, prefix:String, frameRate:Int, loop:Bool)
+		{
+			var sprite:FlxSprite = getTagObject("gameImages", tag);
+			return sprite.animation.addByPrefix(name, prefix, frameRate, loop);
+		});
+		setFunction("playAnim", function(tag:String, name:String)
+		{
+			var sprite:FlxSprite = getTagObject("gameImages", tag);
+			return sprite.animation.play(name);
+		});
+		setFunction("stopAnim", function(tag:String)
+		{
+			var sprite:FlxSprite = getTagObject("gameImages", tag);
+			return sprite.animation.stop();
+		});
+		setFunction("getAnimName", function(tag:String)
+		{
+			var sprite:FlxSprite = getTagObject("gameImages", tag);
+			return sprite.animation.name;
+		});
+		setFunction("setAnimProperty", function(tag:String, property:String, value:Dynamic)
+		{
+			var sprite:FlxSprite = getTagObject("gameImages", tag);
+			Reflect.setProperty(sprite.animation, property, value);
+			return value;
+		});
+		setFunction("getAnimProperty", function(tag:String, property:String)
+		{
+			var sprite:FlxSprite = getTagObject("gameImages", tag);
+			return Reflect.getProperty(sprite.animation, property);
+		});
+		setFunction("setSpriteProperty", function(tag:String, property:String, value:Dynamic)
+		{
+			var sprite:FlxSprite = getTagObject("gameImages", tag);
+			Reflect.setProperty(sprite, property, value);
+			return value;
+		});
+		setFunction("getSpriteProperty", function(tag:String, property:String)
+		{
+			var sprite:FlxSprite = getTagObject("gameImages", tag);
+			return Reflect.getProperty(sprite, property);
+		});
+	}
+
+	function getTagObject(tagVer:String = "gameText", name:String)
+	{
+		var obj:Dynamic = null;
+		switch (tagVer)
+		{
+			case "gameText":
+				obj = GameHandler.gameText.get(name);
+			case "gameImages":
+				obj = GameHandler.gameImages.get(name);
+		}
+		return obj;
 	}
 }
