@@ -1,6 +1,7 @@
 package;
 
 import flixel.FlxG;
+import flixel.FlxSprite;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import haxe.Http;
@@ -15,6 +16,7 @@ class GameHandler
 
 	// Bunch Variable for Lua
 	public static var gameText:Map<String, FlxText> = new Map<String, FlxText>();
+	public static var gameImages:Map<String, FlxSprite> = new Map<String, FlxSprite>();
 
 	public static function exitGame(?exitActually:Bool = false)
 	{

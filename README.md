@@ -8,6 +8,8 @@ A game engine using hscript with a scriptable to make a fully game without confi
 - This engine use Polymod to make the engine working, the main cores!
 ### Based HScript system
 - Yes, you can code the game with based HScript we made!
+### Lua script :0 (only on v2.0 and adove)
+- YES, you can actual code as a lua with alot of function and variable we had
 ### Simple but cool Menu Select game
 - We want to make them feel like some sort of console menu!
 
