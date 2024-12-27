@@ -1,20 +1,23 @@
 # Cruese Engine
 ![logo](logo.png)
 
-A game engine using hscript with a scriptable to make a fully game without config too much!
+A game engine using HScript with a scriptable interface to create a complete game without extensive configuration!
 
-# Feature
-### Polymod system
-- This engine use Polymod to make the engine working, the main cores!
-### Based HScript system
-- Yes, you can code the game with based HScript we made!
-### Lua script :0 (only on v2.0 and adove)
-- YES, you can actual code as a lua with alot of function and variable we had
-### Simple but cool Menu Select game
-- We want to make them feel like some sort of console menu!
+## Features
+### Polymod System
+- This engine uses Polymod as the core system to function.
 
-### [Preview of this engine (made by Joalor64GH)](https://www.youtube.com/watch?v=PVLMGLD0sw0)
+### HScript-Based System
+- You can code the game using the HScript system we developed!
 
-# Credits:
+### Lua Scripting (available from v2.0 and above)
+- Yes, you can code in Lua with many functions and variables we provide.
+
+### Simple but Cool Menu Selection
+- We aim to give it a console menu-like feel!
+
+### [Preview of this engine (by Joalor64GH)](https://www.youtube.com/watch?v=PVLMGLD0sw0)
+
+## Credits
 * Huy1234TH - Main of this project, coder and stuff
 * Joalor64GH - Additional Coder, also help fixing bug and init polymod

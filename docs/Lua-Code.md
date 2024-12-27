@@ -47,6 +47,16 @@ Please note that `Lua` on Cruese Engine is still not fully done yet!, lot of fun
 * getTextProperty(tag, property)
 > This one will get a property from a text
 
+#### Sprite Function
+* createSprite(tag, x, y, image)
+> This one will create a sprite
+* removeSprite(tag)
+> This one will remove a sprite
+* reviveSprite(tag)
+> This one will revive a sprite
+* destroySprite(tag)
+> This one will destroy a sprite
+
 ## Example
 ```lua
 function onCreate()

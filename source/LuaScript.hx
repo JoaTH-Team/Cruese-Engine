@@ -38,6 +38,7 @@ class LuaScript extends FlxBasic
 
 		setFunction("exitGame", function(exitActually:Bool = false) GameHandler.exitGame(exitActually));
 		setFunction("resizeApp", function(w:Int, h:Int) GameHandler.resizeApp(w, h));
+		loadedMainFunction();
 		loadedTextFunction();
 		loadedImagesFunction();
 	}
@@ -75,26 +76,19 @@ class LuaScript extends FlxBasic
 	{
 		setFunction("setVar", function(name:String, value:Dynamic)
 		{
-			Convert.toLua(lua, value);
-			Lua.setglobal(lua, name);
+			return setVar(name, value);
 		});
 		setFunction("getVar", function(name:String)
 		{
-			return Lua.getglobal(lua, name);
+			return getVar(name);
 		});
 		setFunction("deleteVar", function(name:String)
 		{
-			Lua.pushnil(lua);
-			Lua.setglobal(lua, name);
+			return deleteVar(name);
 		});
 		setFunction("callFunction", function(name:String, args:Array<Dynamic>)
 		{
-			Lua.getglobal(lua, name);
-			for (arg in args)
-			{
-				Convert.toLua(lua, arg);
-			}
-			Lua.pcall(lua, args.length, 0, 0);
+			return callFunction(name, args);
 		});
 	}
 
@@ -315,6 +309,75 @@ class LuaScript extends FlxBasic
 		{
 			var sprite:FlxSprite = getTagObject("gameImages", tag);
 			return Reflect.getProperty(sprite, property);
+		});
+	}
+
+	function loadedObjectFunction():Void
+	{
+		setFunction("mouseOverlap", function(tag:String):Bool
+		{
+			var gameTag:Dynamic = null;
+			if (GameHandler.gameImages.exists(tag))
+				gameTag = GameHandler.gameImages.get(tag);
+			else if (GameHandler.gameText.exists(tag))
+				gameTag = GameHandler.gameText.get(tag);
+			return FlxG.mouse.overlaps(gameTag);
+		});
+		setFunction("setProperty", function(tag:String, property:String, value:Dynamic)
+		{
+			var gameTag:Dynamic = null;
+			if (GameHandler.gameImages.exists(tag))
+				gameTag = GameHandler.gameImages.get(tag);
+			else if (GameHandler.gameText.exists(tag))
+				gameTag = GameHandler.gameText.get(tag);
+			Reflect.setProperty(gameTag, property, value);
+			return value;
+		});
+		setFunction("getProperty", function(tag:String, property:String)
+		{
+			var gameTag:Dynamic = null;
+			if (GameHandler.gameImages.exists(tag))
+				gameTag = GameHandler.gameImages.get(tag);
+			else if (GameHandler.gameText.exists(tag))
+				gameTag = GameHandler.gameText.get(tag);
+			return Reflect.getProperty(gameTag, property);
+		});
+		setFunction("getTagObject", function(tagVer:String, name:String)
+		{
+			return getTagObject(tagVer, name);
+		});
+		setFunction("getKeyPress", function(keyName:String)
+		{
+			return FlxG.keys.checkStatus(keyName, PRESSED);
+		});
+		setFunction("getKeyJustPress", function(keyName:String)
+		{
+			return FlxG.keys.checkStatus(keyName, JUST_RELEASED);
+		});
+		setFunction("getKeyJustRelease", function(keyName:String)
+		{
+			return FlxG.keys.checkStatus(keyName, JUST_RELEASED);
+		});
+		setFunction("getMousePress", function()
+		{
+			return FlxG.mouse.pressed;
+		});
+		setFunction("getMouseJustPress", function()
+		{
+			return FlxG.mouse.justPressed;
+		});
+		setFunction("getMouseJustRelease", function()
+		{
+			return FlxG.mouse.justReleased;
+		});
+		setFunction("setSaveData", function(name:String, value:Dynamic)
+		{
+			FlxG.save.data.set(name, value);
+			FlxG.save.flush();
+		});
+		setFunction("getSaveData", function(name:String)
+		{
+			return FlxG.save.data.get(name);
 		});
 	}
 
