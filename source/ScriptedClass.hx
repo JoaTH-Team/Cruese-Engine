@@ -10,10 +10,10 @@ using StringTools;
 class ScriptedClass extends FlxUIState
 {
 	public var script:HScript = null;
+	public var path:String = "";
 
 	public static var instance:ScriptedClass = null;
 	public static var trackerFolder:Int = 0;
-	var path:String = "";
 
 	public function new(fileName:String, ?args:Array<Dynamic>)
 	{
@@ -29,14 +29,14 @@ class ScriptedClass extends FlxUIState
 			
 			script = new HScript(path, false);
 			script.execute(path, false);
-			
-			scriptExecute("new", args);
 		}
 		catch (e:Dynamic)
 		{
 			script = null;
 			trace('Error getting script from $fileName!\n$e');
 		}
+
+		scriptExecute("new", args);
 	}
 
 	override function create()
