@@ -16,12 +16,14 @@ class ScriptedSubClass extends FlxUISubState
 
 	public function new(fileName:String, ?args:Array<Dynamic>)
 	{
-		super();
+		if (fileName != null)
+			path = fileName;
+		
 		instance = this;
 		trackerFolder = PlayState.trackerFolder;
 		try
 		{
-			var filePath = "mods/" + PolyHandler.trackedMods[trackerFolder].id + "/data/classes/" + fileName + ".hxs";
+			var filePath = "mods/" + PolyHandler.trackedMods[trackerFolder].id + "/data/classes/" + path + ".hxs";
 
 			if (FileSystem.exists(filePath))
 				path = filePath;
@@ -36,6 +38,8 @@ class ScriptedSubClass extends FlxUISubState
 		}
 
 		scriptExecute("new", args);
+
+		super();
 	}
 
 	override function create()
