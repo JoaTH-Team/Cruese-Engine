@@ -98,6 +98,9 @@ class HScript extends flixel.FlxBasic
 		set("FlxEase", FlxEase);
 		set("FlxColor", GameHandler.colorWorkaround());
 
+		set("FlxTypedGroup", FlxTypedGroup);
+		set("FlxSpriteGroup", FlxSpriteGroup);
+
 		set("ScriptedClass", ScriptedClass);
 		set("ScriptedSubClass", ScriptedSubClass);
 		// Same but replace `Class` with `State`
@@ -105,9 +108,14 @@ class HScript extends flixel.FlxBasic
 		set("ScriptedSubState", ScriptedSubClass);
 		set("PlayState", PlayState);
 
-		set("createTypedGroup", function() 
+		set("createTypedGroup", function(?variable) 
 		{
-			return new FlxTypedGroup<Dynamic>();
+			return variable = new FlxTypedGroup<Dynamic>();
+		});
+
+		set("createSpriteGroup", function(?variable) 
+		{
+			return variable = new FlxSpriteGroup();
 		});
 
 		set("game", PlayState.instance);

@@ -44,11 +44,11 @@ function onCreate()
 
 ### Making a Group
 ```haxe
-var group:FlxTypedGroup<FlxSprite> = [];
+var group:Dynamic;
 
 function onCreate()
 {
-    group = createTypedGroup();
+    group = createTypedGroup(group);
     add(group);
 
     for (i in 0...5)
