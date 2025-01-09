@@ -7,7 +7,7 @@
 - [X] Added alot of function/variable make for lua (beta!)
 - [X] Fix `mod_version` will also not able to load if the mods not have same version at `api_version` (maybe it just a bug??)
 - [X] Using `hscript-iris` since this one is better
-- [ ] Update `README.md`
+- [X] Update `README.md`
 
 ## v1.3.1 (Little Fixed) - DONE
 - [X] Make Splashes can be skipping by press Enter
