@@ -10,19 +10,22 @@ using StringTools;
 class ScriptedClass extends FlxUIState
 {
 	public var script:HScript = null;
+	public var path:String = "";
 
 	public static var instance:ScriptedClass = null;
 	public static var trackerFolder:Int = 0;
-	var path:String = "";
 
 	public function new(fileName:String, ?args:Array<Dynamic>)
 	{
-		super();
+		if (fileName != null)
+			path = fileName;
+		
 		instance = this;
+		
 		trackerFolder = PlayState.trackerFolder;
 		try
 		{
-			var filePath = "mods/" + PolyHandler.trackedMods[trackerFolder].id + "/data/classes/" + fileName + ".hxs";
+			var filePath = "mods/" + PolyHandler.trackedMods[trackerFolder].id + "/data/classes/" + path + ".hxs";
 
 			if (FileSystem.exists(filePath))
 				path = filePath;
@@ -37,6 +40,10 @@ class ScriptedClass extends FlxUIState
 			script = null;
 			trace('Error getting script from $fileName!\n$e');
 		}
+
+		scriptExecute("new", args);
+
+		super();
 	}
 
 	override function create()
