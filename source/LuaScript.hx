@@ -6,7 +6,6 @@ import flixel.FlxSprite;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import llua.Convert;
-import llua.Lua.Lua_helper;
 import llua.Lua;
 import llua.LuaL;
 import llua.State;

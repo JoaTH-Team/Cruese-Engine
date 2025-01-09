@@ -26,8 +26,8 @@ class ScriptedSubClass extends FlxUISubState
 			if (FileSystem.exists(filePath))
 				path = filePath;
 			
-			script = new HScript(path, false);
-			script.execute(path, false);
+			script = new HScript(path);
+			script.execute();
 
 			scriptExecute("new", args);
 		}

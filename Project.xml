@@ -4,7 +4,7 @@
 
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Cruese Engine" file="Cruese Engine" main="Main" version="1.3.1" company="JoaTH Team" />
+	<app title="Cruese Engine" file="Cruese Engine" main="Main" version="2.0" company="JoaTH Team" />
 
 	<!--The flixel preloader is not accurate in Chrome. You can use it regularly if you embed the swf into a html file
 		or you can set the actual size of your file manually at "FlxPreloaderBase-onUpdate-bytesTotal"-->
@@ -42,7 +42,8 @@
 	<haxelib name="flixel" version="5.8.0" />
 	<haxelib name="flixel-addons" version="3.2.3" />
 	<haxelib name="flixel-ui" version="2.6.1" />
-	<haxelib name="hscript" version="2.5.0" />
+	<haxelib name="hscript" version="2.5.0" if="debug" /> <!--should not using them-->
+	<haxelib name="hscript-iris" version="1.1.3" /> <!--using this one is much better!-->
 	<haxelib name="polymod" version="1.8.0" />
 	<haxelib name="linc_luajit" /> <!-- as git -->
 
@@ -98,10 +99,4 @@
 	<haxedef name="POLYMOD_MOD_METADATA_FILE" value="meta.json" />
 	<haxedef name="POLYMOD_MOD_ICON_FILE" value="icon.png" />
 	<haxedef name="POLYMOD_DEBUG" value="true" if="debug" />
-
-	<launchImage path="assets/images/logo.png" />
-	<launchStoryboard template="splash.storyboard" assetsPath="assets/images/logo.png"
-		RGB="0x000000"
-		contentMode="center">
-	</launchStoryboard>
 </project>

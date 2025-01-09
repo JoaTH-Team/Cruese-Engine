@@ -4,6 +4,8 @@
 - [ ] Added alot of function/variable make for lua
 - [ ] Make `GameSelectionState` can be editable
 - [ ] Fix for Lua `haxe value not supported` from `llua/Convert.hx:34`
+- [ ] Fix `mod_version` will also not able to load if the mods not have same version at `api_version`
+- [X] Using `hscript-iris` since this one is better
 
 ## v1.3.1 (Little Fixed) - DONE
 - [X] Make Splashes can be skipping by press Enter
