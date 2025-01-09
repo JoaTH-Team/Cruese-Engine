@@ -59,7 +59,7 @@ function onCreate()
     }
 }
 ```
-### Switch State (May only v1.3 and above work)
+### Switch State (Only v1.3 and above work)
 ```haxe
 // file on data/main.hxs and are loaded by PlayState
 function onCreate() {
