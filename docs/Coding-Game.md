@@ -95,6 +95,8 @@ function onUpdate(elapsed:Float) {
 * `stopScript` destroys the current script
 * `importClass` is like `import` in normal Haxe
     * Example: `importClass('package.Class');`
+    * On v2.0: This `importClass` function will be removed, you can actual using `import`!:
+        * Exmaple: `import flixel.FlxSprite;`
 * `importScript` allows access to a script's variables and functions
     * Example: `var otherScript = importScript('path.to.script');`
     * Also, don't worry about `.`, it will be autocorrected to `/`
