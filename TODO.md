@@ -1,11 +1,13 @@
 # List TODO for Cruese Engine
-## v2.0 (Lua update)
+## v2.1 (Menu Update)
+- [ ] Rework game menu
+
+## v2.0 (Lua update) - DONE
 - [X] Added Lua script (is work lmao)
-- [ ] Added alot of function/variable make for lua
-- [ ] Make `GameSelectionState` can be editable
-- [ ] Fix for Lua `haxe value not supported` from `llua/Convert.hx:34`
-- [ ] Fix `mod_version` will also not able to load if the mods not have same version at `api_version`
+- [X] Added alot of function/variable make for lua (beta!)
+- [X] Fix `mod_version` will also not able to load if the mods not have same version at `api_version` (maybe it just a bug??)
 - [X] Using `hscript-iris` since this one is better
+- [ ] Update `README.md`
 
 ## v1.3.1 (Little Fixed) - DONE
 - [X] Make Splashes can be skipping by press Enter

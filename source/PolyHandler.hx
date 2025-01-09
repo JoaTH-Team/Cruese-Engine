@@ -1,6 +1,5 @@
 package;
 
-import flixel.FlxG;
 import polymod.Polymod;
 import polymod.backends.PolymodAssets.PolymodAssetType;
 import polymod.format.ParseRules;

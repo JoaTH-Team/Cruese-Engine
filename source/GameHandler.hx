@@ -6,13 +6,12 @@ import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import haxe.Http;
 import haxe.Json;
-import openfl.Lib;
 
 // just a bunch of function can be used
 class GameHandler
 {
 	// public static var version:String = Lib.application.meta.get("version");
-	public static var versionA_M:String = "2.0.0";
+	public static var versionAPI:String = "2.0.0";
 
 	// Bunch Variable for Lua
 	public static var gameText:Map<String, FlxText> = new Map<String, FlxText>();

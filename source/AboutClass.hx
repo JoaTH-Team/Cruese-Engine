@@ -28,7 +28,7 @@ class AboutClass extends FlxSubState
 		bg.cameras = [camGame];
 		add(bg);
 
-		var text:FlxText = new FlxText(0, 0, 0, 'Engine v' + Lib.application.meta.get("version") + "\nMods and API v" + GameHandler.versionA_M, 24);
+		var text:FlxText = new FlxText(0, 0, 0, 'Engine v' + Lib.application.meta.get("version") + "\nAPI For Mods v" + GameHandler.versionAPI, 24);
 		text.screenCenter();
 		text.scrollFactor.set();
 		text.cameras = [camGame];

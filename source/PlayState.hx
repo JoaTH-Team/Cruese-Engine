@@ -1,6 +1,7 @@
 package;
 
 import flixel.FlxState;
+import openfl.Lib;
 import sys.FileSystem;
 
 using StringTools;

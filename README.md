@@ -7,8 +7,8 @@ A game engine using HScript with a scriptable interface to create a complete gam
 ### Polymod System
 - This engine uses Polymod as the core system to function.
 
-### HScript-Based System
-- You can code the game using the HScript system we developed!
+### Haxe Scripting
+- This engine support hscript code, you can code haxe as a script!
 
 ### Lua Scripting (available from v2.0 and above)
 - Yes, you can code in Lua with many functions and variables we provide.

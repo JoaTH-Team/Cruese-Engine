@@ -33,7 +33,7 @@ class LuaScript extends FlxBasic
 		}
 
 		setVar("VERSION", openfl.Lib.application.meta.get("version"));
-		setVar("VERSION_A_M", GameHandler.versionA_M);
+		setVar("VERSION_API", GameHandler.versionAPI);
 
 		setFunction("exitGame", function(exitActually:Bool = false) GameHandler.exitGame(exitActually));
 		setFunction("resizeApp", function(w:Int, h:Int) GameHandler.resizeApp(w, h));
