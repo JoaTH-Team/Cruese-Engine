@@ -3,23 +3,34 @@ package;
 import flixel.FlxG;
 import flixel.FlxState;
 import haxe.Json;
+import openfl.Assets;
 import openfl.Lib;
+import tjson.TJSON;
 
-// it checks if there are mods or not
-// if there are mods, switch to game selector
+typedef InitialData =
+{
+	playSplashesScreen:Bool,
+} 
+
 class InitialState extends FlxState
 {
 	public static var mustUpdate:Bool = false;
 	public static var daJson:Dynamic;
+	public static var gameConfig:InitialData;
 
 	override function create()
 	{
 		PolyHandler.reload();
 		updateCheck();
 
+		gameConfig = TJSON.parse(Assets.getText("gameConfig.json"));
+
 		if (PolyHandler.trackedMods.length > 0)
 		{
-			FlxG.switchState(new SplashesState());
+			if (!gameConfig.playSplashesScreen)
+				FlxG.switchState(new GameSelectionState());
+			else if (gameConfig.playSplashesScreen)
+				FlxG.switchState(new SplashesState());
 		}
 		else
 		{

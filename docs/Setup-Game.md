@@ -8,7 +8,7 @@ For beginner work your game, go to the `mods` folder and follow the steps down h
 	"title": "Template",
 	"description": "Game Description.",
 	"author": "You!",
-	"api_version": "1.0.0",
+	"api_version": "2.0.0",
 	"mod_version": "1.0.0",
 	"license": "Apache 2.0"
 }

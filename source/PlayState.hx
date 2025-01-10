@@ -1,7 +1,6 @@
 package;
 
 import flixel.FlxState;
-import openfl.Lib;
 import sys.FileSystem;
 
 using StringTools;
@@ -63,8 +62,7 @@ class PlayState extends FlxState
 	{
 		for (i in 0...scriptArray.length)
 		{
-			final script:HScript = scriptArray[i];
-			script.call(funcName, funcArgs);
+			scriptArray[i].callFunction(funcName, funcArgs);
 		}
 		for (i in 0...luaArray.length)
 		{

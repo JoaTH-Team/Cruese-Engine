@@ -89,6 +89,11 @@
       "type": "git",
       "ref": "main",
       "url": "https://github.com/AndreiRudenko/linc_luajit.git"
+    },
+    {
+      "name": "tjson",
+      "type": "haxelib",
+      "version": "1.4.0"
     }
   ]
 }

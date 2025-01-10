@@ -4,7 +4,7 @@
 
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Cruese Engine" file="Cruese Engine" main="Main" version="2.0" company="JoaTH Team" />
+	<app title="Cruese Engine" file="Cruese Engine" main="Main" version="2.1" company="JoaTH Team" />
 
 	<!--The flixel preloader is not accurate in Chrome. You can use it regularly if you embed the swf into a html file
 		or you can set the actual size of your file manually at "FlxPreloaderBase-onUpdate-bytesTotal"-->
@@ -34,6 +34,7 @@
 
 	<source path="source" />
 	<assets path="assets" />
+	<assets path="gameConfig.json" />
 
 	<assets path="mods" embed="false" />
 
@@ -46,6 +47,7 @@
 	<haxelib name="hscript-iris" version="1.1.3" /> <!--using this one is much better!-->
 	<haxelib name="polymod" version="1.8.0" />
 	<haxelib name="linc_luajit" /> <!-- as git -->
+	<haxelib name="tjson" version="1.4.0" />
 
 	<!-- ______________________________ Haxedefines _____________________________ -->
 

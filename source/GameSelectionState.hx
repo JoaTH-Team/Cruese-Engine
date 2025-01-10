@@ -31,13 +31,12 @@ class GameSelectionState extends FlxState
 	var desc:FlxText;
 	var iconGame:Array<ModIcon> = [];
 	var cardGame:FlxSprite;
-	var aboutButton:FlxSprite;
 
 	override function create()
 	{
 		super.create();
 
-		GameHandler.resizeApp(640, 480); // based
+		GameHandler.resizeApp(640, 480);
 
 		var grid:FlxBackdrop = new FlxBackdrop(FlxGridOverlay.createGrid(80, 80, 160, 160, true, 0x33FFFFFF, 0x0));
 		grid.velocity.set(40, 40);
@@ -91,17 +90,7 @@ class GameSelectionState extends FlxState
 		versionDisplay.cameras = [camHUD];
 		add(versionDisplay);
 
-		aboutButton = new FlxSprite(16.3, -10.5);
-		aboutButton.frames = Paths.getSparrowAtlas("gameUI/aboutButton");
-		aboutButton.animation.addByPrefix("idle", "about_button0000");
-		aboutButton.animation.addByPrefix("selected", "about_button0", 24, false);
-		aboutButton.animation.addByPrefix("finishedAnim", "about_button0007", 24, false);
-		aboutButton.animation.play("idle");
-		aboutButton.cameras = [camHUD];
-		// add(aboutButton);
-
 		changeSelection();
-		// selectGame();
 		FlxG.camera.follow(camFollow, null, 0.15);
 	}
 
@@ -109,18 +98,17 @@ class GameSelectionState extends FlxState
 	{
 		super.update(elapsed);
 
-		if (FlxG.keys.justPressed.F5)
-		{
-			PolyHandler.reload();
-			FlxG.resetState();
-		}
 		handleKey();
-		// handleButton();
 	}
 
 	function handleKey()
 	{
 		var keys = FlxG.keys.justPressed;
+		if (keys.F5)
+		{
+			PolyHandler.reload();
+			FlxG.resetState();
+		}
 		if (keys.UP || keys.DOWN)
 		{
 			changeSelection((keys.UP) ? -1 : 1);
@@ -138,41 +126,11 @@ class GameSelectionState extends FlxState
 			FlxG.switchState(new CreditsState());
 		}
 	}
-	/*var gameSet:Dynamic = null;
 
-		// For `gameSet.json`
-		function selectGame()
-		{
-			gameSet = Json.parse("mods/gameSet.json");
-			if (gameSet.allowToLoadRN == true)
-			{
-				if (PolyHandler.getMods().contains(gameSet.gameLoad))
-					trace(PolyHandler.getMods().contains(gameSet.gameLoad));
-				// switchToGame();
-			}
-	}*/
 	function switchToGame()
 	{
 		PlayState.trackerFolder = curSelected;
 		FlxG.switchState(new PlayState());
-	}
-
-	function handleButton()
-	{
-		var mouse = FlxG.mouse;
-		if (mouse.overlaps(aboutButton))
-		{
-			aboutButton.animation.play("selected", true);
-			aboutButton.animation.finishCallback = function(name:String)
-			{
-				if (name == "selected")
-					aboutButton.animation.play("finishedAnim", true);
-			};
-			if (mouse.justPressed)
-			{
-				openSubState(new AboutClass());
-			}
-		}
 	}
 
 	function changeSelection(change:Int = 0)

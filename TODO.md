@@ -1,6 +1,12 @@
 # List TODO for Cruese Engine
-## v2.1 (Menu Update)
+## v2.2 (Menu Update)
 - [ ] Rework game menu
+- [ ] Fix if the file have switch code but not on the `classes` function, is crash
+- [ ] Fix ActionState could not display details error
+
+## v2.1 (HotFix HScript) - DONE
+- [X] Fix can't using any `justPress`, `press`, `justRelease`
+- [X] Fix could not load the file if missing full function such as `onUpdate`, `onUpdatePost`,...
 
 ## v2.0 (Lua update) - DONE
 - [X] Added Lua script (is work lmao)

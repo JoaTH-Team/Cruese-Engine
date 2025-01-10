@@ -77,6 +77,8 @@ class HScript extends Iris
 		{
 			return new FlxTypedGroup<Dynamic>();
 		});
+		set("FlxColor", GameHandler.colorWorkaround());
+		set("FlxKey", KeyWorkaround);
 		set("game", PlayState.instance);
 		set("state", FlxG.state);
 		set("add", FlxG.state.add);
@@ -86,9 +88,10 @@ class HScript extends Iris
 	}
 
 	// stop from warming missing function
+	// just found that i was using != instead of ==
 	public function callFunction(funcName:String, funcArgs:Array<Dynamic>)
 	{
-		if (funcName != null || !exists(funcName))
+		if (funcName == null || !exists(funcName))
 			return null;
 		return call(funcName, funcArgs);
 	}
