@@ -1,3 +1,5 @@
 {
-    "playSplashesScreen": true
+    "playSplashesScreen": true,
+    "loadgameInstant": "template",
+    "willLoadgameInstant": false
 }

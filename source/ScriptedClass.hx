@@ -25,7 +25,10 @@ class ScriptedClass extends FlxUIState
 		trackerFolder = PlayState.trackerFolder;
 		try
 		{
-			var filePath = "mods/" + PolyHandler.trackedMods[trackerFolder].id + "/data/classes/" + path + ".hxs";
+			var filePath:String = null;
+
+			for (mod in PolyHandler.getModIDs())
+				filePath = "mods/" + mod + "/data/classes/" + path + ".hxs";
 
 			if (FileSystem.exists(filePath))
 				path = filePath;

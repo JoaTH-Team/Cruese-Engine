@@ -10,6 +10,8 @@ import tjson.TJSON;
 typedef InitialData =
 {
 	playSplashesScreen:Bool,
+	loadgameInstant:String,
+	willLoadgameInstant:Bool,
 } 
 
 class InitialState extends FlxState

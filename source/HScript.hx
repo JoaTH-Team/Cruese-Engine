@@ -53,7 +53,9 @@ class HScript extends Iris
 		set("importScript", function(source:String)
 		{
 			var name:String = StringTools.replace(source, ".", "/");
-			var filePath = "mods/" + PolyHandler.trackedMods[PlayState.trackerFolder].id + "/data/" + name + ".hxs";
+			var filePath:String = null;
+			for (mod in PolyHandler.getModIDs())
+				filePath = "mods/" + mod + "/data/" + name + ".hxs";
 			var script:HScript = new HScript(filePath);
 			script.execute();
 			return script.getAll();

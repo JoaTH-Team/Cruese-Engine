@@ -90,6 +90,8 @@ class GameSelectionState extends FlxState
 		versionDisplay.cameras = [camHUD];
 		add(versionDisplay);
 
+		// trace(PolyHandler.getModIDs());
+		
 		changeSelection();
 		FlxG.camera.follow(camFollow, null, 0.15);
 	}
