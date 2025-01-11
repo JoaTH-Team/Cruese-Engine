@@ -12,6 +12,7 @@ import flixel.math.FlxMath;
 import flixel.system.FlxAssets;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
+import flixel.util.FlxTimer;
 import haxe.Json;
 import haxe.io.Bytes;
 import openfl.Lib;
@@ -91,7 +92,7 @@ class GameSelectionState extends FlxState
 		add(versionDisplay);
 
 		// trace(PolyHandler.getModIDs());
-		
+
 		changeSelection();
 		FlxG.camera.follow(camFollow, null, 0.15);
 	}

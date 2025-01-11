@@ -3,8 +3,22 @@ package;
 import crowplexus.hscript.Interp.LocalVar;
 import crowplexus.iris.Iris;
 import crowplexus.iris.IrisConfig.RawIrisConfig;
+import flixel.FlxBasic;
+import flixel.FlxCamera;
 import flixel.FlxG;
+import flixel.FlxObject;
+import flixel.FlxSprite;
+import flixel.addons.display.FlxBackdrop;
+import flixel.addons.display.FlxRuntimeShader;
 import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.group.FlxGroup;
+import flixel.group.FlxSpriteGroup;
+import flixel.math.FlxMath;
+import flixel.sound.FlxSound;
+import flixel.text.FlxText;
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
+import flixel.util.FlxTimer;
 import sys.io.File;
 
 class HScript extends Iris
@@ -50,6 +64,38 @@ class HScript extends Iris
 		}
 		super(File.getContent(file), rawConfig);
 
+		// Some Preset Class
+		set('FlxAxes', GameHandler.getFlxAxes());
+		set('FlxBackdrop', FlxBackdrop);
+		set('FlxBasic', FlxBasic);
+		set('FlxCamera', FlxCamera);
+		set('FlxCameraFollowStyle', GameHandler.getFlxCameraFollowStyle());
+		set('FlxEase', FlxEase);
+		set('FlxG', FlxG);
+		set('FlxGroup', FlxGroup);
+		set('FlxMath', FlxMath);
+		set('FlxObject', FlxObject);
+		set('FlxRuntimeShader', FlxRuntimeShader);
+		set('FlxSound', FlxSound);
+		set('FlxSprite', FlxSprite);
+		set('FlxSpriteGroup', FlxSpriteGroup);
+		set('FlxText', FlxText);
+		set('FlxTextAlign', GameHandler.getFlxTextAlign());
+		set('FlxTextBorderStyle', GameHandler.getFlxTextBorderStyle());
+		set('FlxTimer', FlxTimer);
+		set('FlxTween', FlxTween);
+		set('FlxTypedGroup', FlxTypedGroup);
+		set('createTypedGroup', function(?variable)
+		{
+			return variable = new FlxTypedGroup<Dynamic>();
+		});
+		set('createSpriteGroup', function(?variable)
+		{
+			return variable = new FlxSpriteGroup();
+		});
+		set("FlxColor", GameHandler.colorWorkaround());
+		set("FlxKey", KeyWorkaround);
+
 		set("importScript", function(source:String)
 		{
 			var name:String = StringTools.replace(source, ".", "/");
@@ -75,12 +121,7 @@ class HScript extends Iris
 		set("ScriptedState", ScriptedClass);
 		set("ScriptedSubState", ScriptedSubClass);
 		set("PlayState", PlayState);
-		set("createTypedGroup", function() 
-		{
-			return new FlxTypedGroup<Dynamic>();
-		});
-		set("FlxColor", GameHandler.colorWorkaround());
-		set("FlxKey", KeyWorkaround);
+		// Some state stuff
 		set("game", PlayState.instance);
 		set("state", FlxG.state);
 		set("add", FlxG.state.add);

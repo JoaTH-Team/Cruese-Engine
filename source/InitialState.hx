@@ -2,6 +2,7 @@ package;
 
 import flixel.FlxG;
 import flixel.FlxState;
+import flixel.util.FlxTimer;
 import haxe.Json;
 import openfl.Assets;
 import openfl.Lib;
@@ -29,10 +30,20 @@ class InitialState extends FlxState
 
 		if (PolyHandler.trackedMods.length > 0)
 		{
-			if (!gameConfig.playSplashesScreen)
-				FlxG.switchState(new GameSelectionState());
-			else if (gameConfig.playSplashesScreen)
-				FlxG.switchState(new SplashesState());
+			if (gameConfig.willLoadgameInstant)
+			{
+				new FlxTimer().start(1, function(timer:FlxTimer)
+				{
+					FlxG.switchState(new PlayState());
+				});
+			}
+			else if (!gameConfig.willLoadgameInstant)
+			{
+				if (!gameConfig.playSplashesScreen)
+					FlxG.switchState(new GameSelectionState());
+				else if (gameConfig.playSplashesScreen)
+					FlxG.switchState(new SplashesState());
+			}
 		}
 		else
 		{

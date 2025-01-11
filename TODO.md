@@ -1,8 +1,8 @@
 # List TODO for Cruese Engine
 ## v2.2 (Menu Update)
 - [ ] Rework game menu
-- [ ] Fix if the file have switch code but not on the `classes` function, is crash
 - [ ] Fix ActionState could not display details error
+- [ ] Make can be directly load into a selection mods by using the json
 
 ## v2.1 (HotFix HScript) - DONE
 - [X] Fix can't using any `justPress`, `press`, `justRelease`

@@ -1,9 +1,11 @@
 package;
 
+import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.input.keyboard.FlxKey;
 import flixel.text.FlxText;
+import flixel.util.FlxAxes;
 import flixel.util.FlxColor;
 import haxe.Http;
 import haxe.Json;
@@ -66,6 +68,47 @@ class GameHandler
 			{
 				return color & 0xffffff;
 			}
+		};
+	}
+
+	public static function getFlxCameraFollowStyle()
+	{
+		return {
+			"LOCKON": FlxCameraFollowStyle.LOCKON,
+			"PLATFORMER": FlxCameraFollowStyle.PLATFORMER,
+			"TOPDOWN": FlxCameraFollowStyle.TOPDOWN,
+			"TOPDOWN_TIGHT": FlxCameraFollowStyle.TOPDOWN_TIGHT,
+			"SCREEN_BY_SCREEN": FlxCameraFollowStyle.SCREEN_BY_SCREEN,
+			"NO_DEAD_ZONE": FlxCameraFollowStyle.NO_DEAD_ZONE
+		};
+	}
+
+	public static function getFlxTextAlign()
+	{
+		return {
+			"LEFT": FlxTextAlign.LEFT,
+			"CENTER": FlxTextAlign.CENTER,
+			"RIGHT": FlxTextAlign.RIGHT,
+			"JUSTIFY": FlxTextAlign.JUSTIFY
+		};
+	}
+
+	public static function getFlxTextBorderStyle()
+	{
+		return {
+			"NONE": FlxTextBorderStyle.NONE,
+			"SHADOW": FlxTextBorderStyle.SHADOW,
+			"OUTLINE": FlxTextBorderStyle.OUTLINE,
+			"OUTLINE_FAST": FlxTextBorderStyle.OUTLINE_FAST
+		};
+	}
+
+	public static function getFlxAxes()
+	{
+		return {
+			"X": FlxAxes.X,
+			"Y": FlxAxes.Y,
+			"XY": FlxAxes.XY
 		};
 	}
 
