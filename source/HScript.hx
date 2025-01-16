@@ -126,6 +126,8 @@ class HScript extends Iris
 		set("state", FlxG.state);
 		set("add", FlxG.state.add);
 		set("remove", FlxG.state.remove);
+		set("insert", FlxG.state.insert);
+		set("members", FlxG.state.members);
 
 		execute();
 	}

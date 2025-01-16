@@ -12,7 +12,6 @@ class PlayState extends FlxState
 
 	public static var trackerFolder:Int = 0;
 	public static var instance:PlayState = null;
-	var path(default, null):String;
 
 	override public function create()
 	{
@@ -20,7 +19,7 @@ class PlayState extends FlxState
 
 		var foldersToCheck:Array<String> = [];
 		for (mod in PolyHandler.getModIDs())
-			foldersToCheck.push("mods/" + mod + "/data/" + path + ".hxs");
+			foldersToCheck.push("mods/" + mod + "/data/");
 		for (folder in foldersToCheck)
 		{
 			if (FileSystem.exists(folder) && FileSystem.isDirectory(folder))
