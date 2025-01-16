@@ -1,5 +1,6 @@
 {
     "playSplashesScreen": true,
     "loadgameInstant": "template",
-    "willLoadgameInstant": false
+    "willLoadgameInstant": false,
+    "modsToLoad": []
 }

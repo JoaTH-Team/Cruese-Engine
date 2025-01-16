@@ -25,10 +25,10 @@ class PolyHandler
 		'otf' => FONT
 	];
 
-	public static function reload():Void
+	public static function reload(?modsToLoad:Array<String> = null):Void
 	{
 		trace('Reloading Polymod...');
-		loadMods(getMods());
+		loadMods((modsToLoad.length > 0) ? modsToLoad : getMods());
 	}
 
 	public static function loadMods(folders:Array<String>)

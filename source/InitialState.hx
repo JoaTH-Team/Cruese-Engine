@@ -13,6 +13,7 @@ typedef InitialData =
 	playSplashesScreen:Bool,
 	loadgameInstant:String,
 	willLoadgameInstant:Bool,
+	modsToLoad:Array<String>
 } 
 
 class InitialState extends FlxState
@@ -23,10 +24,10 @@ class InitialState extends FlxState
 
 	override function create()
 	{
-		PolyHandler.reload();
-		updateCheck();
-
 		gameConfig = TJSON.parse(Assets.getText("gameConfig.json"));
+
+		PolyHandler.reload(gameConfig.modsToLoad);
+		updateCheck();
 
 		if (PolyHandler.trackedMods.length > 0)
 		{
