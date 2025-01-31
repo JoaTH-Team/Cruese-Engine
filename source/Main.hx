@@ -21,11 +21,6 @@ class Main extends Sprite
 	{
 		super();
 
-		if (!FileSystem.exists('./mods/'))
-			FileSystem.createDirectory('./mods/');
-		if (!FileSystem.exists('mods/mods-goes-here.txt'))
-			File.saveContent('mods/mods-goes-here.txt', '');
-
 		final initialState = InitialState; // not sure why VSCode didn't know this?
 		addChild(new FlxGame(0, 0, initialState, 60, 60, true, false));
 		fpsCounter = new FPS(1, 1, 0xffffff);
