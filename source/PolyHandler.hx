@@ -4,6 +4,11 @@ import polymod.Polymod;
 import polymod.backends.PolymodAssets.PolymodAssetType;
 import polymod.format.ParseRules;
 
+#if sys
+import sys.FileSystem;
+import sys.io.File;
+#end
+
 class PolyHandler
 {
 	static final MOD_DIR:String = 'mods';
@@ -28,10 +33,12 @@ class PolyHandler
 	public static function reload():Void
 	{
 		trace('Reloading Polymod...');
+		#if sys
 		if (!FileSystem.exists('./mods/'))
 			FileSystem.createDirectory('./mods/');
 		if (!FileSystem.exists('mods/mods-goes-here.txt'))
 			File.saveContent('mods/mods-goes-here.txt', '');
+		#end
 		loadMods(getMods());
 	}
 
