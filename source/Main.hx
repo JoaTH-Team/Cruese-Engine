@@ -50,7 +50,6 @@ class Main extends Sprite
 				}
 			}
 
-			FlxG.bitmap.dumpCache();
 			FlxG.bitmap.clearCache();
 
 			if (FlxG.sound.music != null)
