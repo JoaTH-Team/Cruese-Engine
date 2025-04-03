@@ -2,6 +2,7 @@ package;
 
 import flixel.FlxG;
 import flixel.FlxGame;
+import flixel.FlxState;
 import haxe.CallStack;
 import openfl.Lib;
 import openfl.display.*;
