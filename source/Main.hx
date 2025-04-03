@@ -21,7 +21,7 @@ class Main extends Sprite
 	{
 		super();
 
-		final initialState = InitialState; // not sure why VSCode didn't know this?
+		final initialState:Class<FlxState> = InitialState; // not sure why VSCode didn't know this?
 		addChild(new FlxGame(0, 0, initialState, 60, 60, true, false));
 		fpsCounter = new FPS(1, 1, 0xffffff);
 		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, (e:UncaughtErrorEvent) ->
@@ -50,6 +50,9 @@ class Main extends Sprite
 				}
 			}
 
+			#if (flixel < "6.0.0")
+			FlxG.bitmap.dumpCache();
+			#end
 			FlxG.bitmap.clearCache();
 
 			if (FlxG.sound.music != null)
